@@ -1,0 +1,28 @@
+# build & deps
+node_modules/
+dist/
+build/
+target/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# env & secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+auth.json
+
+# data & models
+*.db
+*.sqlite*
+*.pkl
+*.pth
+*.bin
+*.csv.gz
+
+# os
+.DS_Store
