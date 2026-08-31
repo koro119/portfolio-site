@@ -7,10 +7,10 @@ export function Work() {
     <section
       id="work"
       className="relative py-24 sm:py-32"
-      style={{ backgroundImage: 'linear-gradient(180deg, rgba(16,20,23,0.44), rgba(15,18,21,0.52))' }}
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(15,18,21,0.48), rgba(15,18,21,0.52))' }}
     >
       <div className="container mx-auto px-5 sm:px-8">
-        <SectionHeader label="05 — Work" title={workConfig.heading} />
+        <SectionHeader label="06 — Work" title={workConfig.heading} />
 
         <Reveal className="max-w-2xl">
           <p className="text-lg text-meta leading-relaxed">{workConfig.statement}</p>

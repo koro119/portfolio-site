@@ -12,7 +12,7 @@ export function MakingOf() {
     >
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader
-          label="06 — Behind the scenes"
+          label="07 — Behind the scenes"
           title={makingConfig.heading}
           subtitle={makingConfig.intro}
         />

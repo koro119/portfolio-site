@@ -13,10 +13,10 @@ export function About() {
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader label="01 — About" title={aboutConfig.heading} />
 
-        <div className="grid lg:grid-cols-2 gap-5">
+        <div className="grid lg:grid-cols-2 gap-5 items-start">
           {/* Text panel */}
           <Reveal>
-            <div className="glass p-8 sm:p-10 h-full">
+            <div className="glass p-8 sm:p-10">
               <div className="space-y-5">
                 {aboutConfig.paragraphs.map((p, i) => (
                   <p key={i} className="text-base sm:text-lg text-meta leading-relaxed">
@@ -27,24 +27,11 @@ export function About() {
             </div>
           </Reveal>
 
-          {/* Image panel */}
+          {/* Personality analyser quiz */}
           <Reveal delay={100}>
-            <div className="glass overflow-hidden h-full">
-              <img
-                src={aboutConfig.image}
-                alt={aboutConfig.imageAlt}
-                className="w-full h-full min-h-[320px] object-cover object-top"
-              />
-            </div>
+            <Quiz />
           </Reveal>
         </div>
-
-        {/* Quiz widget */}
-        <Reveal className="mt-5">
-          <div className="max-w-2xl">
-            <Quiz />
-          </div>
-        </Reveal>
       </div>
     </section>
   );

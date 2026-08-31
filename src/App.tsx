@@ -6,6 +6,7 @@ import { About } from './sections/About';
 import { VibeCoded } from './sections/VibeCoded';
 import { FromScratch } from './sections/FromScratch';
 import { ConceptualExperiments } from './sections/ConceptualExperiments';
+import { Setup } from './sections/Setup';
 import { Work } from './sections/Work';
 import { MakingOf } from './sections/MakingOf';
 import { Footer } from './sections/Footer';
@@ -42,6 +43,7 @@ function App() {
         <VibeCoded />
         <FromScratch />
         <ConceptualExperiments />
+        <Setup />
         <Work />
         <MakingOf />
       </main>

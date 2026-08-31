@@ -37,6 +37,7 @@ export const navigationConfig: { logo: string; items: NavItem[] } = {
     { label: "AI-Assisted", href: "#AI-assisted" },
     { label: "From Scratch", href: "#from-scratch" },
     { label: "Experiments", href: "#experiments" },
+    { label: "My Setup", href: "#setup" },
     { label: "Work", href: "#work" },
     { label: "Making Of", href: "#making" },
   ],
@@ -67,7 +68,7 @@ export const heroConfig: HeroConfig = {
   stats: [
     { value: "27", label: "Projects" },
     { value: "3", label: "Sections of work" },
-    { value: "2023", label: "Started coding" },
+    { value: "2019", label: "Started coding" },
   ],
 };
 
@@ -89,8 +90,6 @@ export interface QuizQuestion {
 export interface AboutConfig {
   heading: string;
   paragraphs: string[];
-  image: string;
-  imageAlt: string;
   quizTitle: string;
   quizNote: string;
   quizIntro: string;
@@ -101,12 +100,10 @@ export interface AboutConfig {
 export const aboutConfig: AboutConfig = {
   heading: "About me",
   paragraphs: [
-    "I'm a final-year Computer Science student at the University of Greenwich, specialising in Artificial Intelligence and Machine Learning. I build systems that combine software, hardware and models — from a dual-engine crime forecasting pipeline (XGBoost + a local LLM reading the news) to a personal agentic OS written in Rust.",
+    "I build systems that combine software, hardware and models — from a dual-engine crime forecasting pipeline (XGBoost + a local LLM reading the news) to a personal agentic OS written in Rust.",
     "I move fast and I'm transparent about how: most of my shipping projects are AI-assisted — built with heavy AI assistance, with the architecture, direction and review done by me. The ones that prove fundamentals are written by hand, line by line. Both matter, and this site shows the difference.",
     "Useful is the bar I aim for — I'm money-motivated, but as a driver rather than a dirty word: I want the things I build to be useful enough that someone would pay for them. It's why my work mixes ambition (an agent that grows its own language) with pragmatism (a job-application tracker that reads live job APIs).",
   ],
-  image: `${import.meta.env.BASE_URL}profile.jpg`,
-  imageAlt: "Portrait of Zylen Saldahna",
   quizTitle: "A small project that analyses you",
   quizIntro:
     "Answer a few questions about how you work and this little model will analyse you — because why not. It's a small rules-based project I built (a weighted scoring script, honestly), not a cloud API.",
@@ -169,6 +166,47 @@ export const aboutConfig: AboutConfig = {
         { label: "Systemise everything — processes over heroics", points: { systems: 2 } },
         { label: "Work backwards from the outcome that pays", points: { money: 2 } },
       ],
+    },
+  ],
+};
+
+// ============================================================================
+// My Setup
+// ============================================================================
+
+export interface SetupItem {
+  kicker: string;
+  title: string;
+  text: string;
+}
+
+export interface SetupConfig {
+  heading: string;
+  subtitle: string;
+  since: string;
+  items: SetupItem[];
+}
+
+export const setupConfig: SetupConfig = {
+  heading: "My setup",
+  subtitle:
+    "The tools behind everything on this page — a mix of cloud and fully-local AI.",
+  since: "2019",
+  items: [
+    {
+      kicker: "Cloud",
+      title: "DeepSeek Harness",
+      text: "The AI coding harness I build with. I direct the plan and review the output; it turns that direction into a working site at speed.",
+    },
+    {
+      kicker: "Local",
+      title: "LM Studio",
+      text: "Local AI that runs entirely on my own machine — no cloud, no API keys, no round-trip latency. The model stays mine.",
+    },
+    {
+      kicker: "Model",
+      title: "Qwen 3.5 9B · MLX",
+      text: "My local model: 9 billion parameters in MLX format, running through LM Studio on Apple Silicon.",
     },
   ],
 };
