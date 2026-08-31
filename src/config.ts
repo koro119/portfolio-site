@@ -63,7 +63,7 @@ export const heroConfig: HeroConfig = {
     "I'm a final-year Computer Science student at the University of Greenwich, specialising in AI and machine learning. I'm quick to generate ideas and prone to jumping between projects fast — impulsive in the creative sense: an idea lands and I'm building it the same week. Some become shipped apps, others become findings. I'm money-motivated in the best way: I want what I build to be useful enough that someone would pay for it.",
   ctaText: "See what I've built",
   ctaHref: "#AI-assisted",
-  photo: "/profile.jpg",
+  photo: `${import.meta.env.BASE_URL}profile.jpg`,
   stats: [
     { value: "27", label: "Projects" },
     { value: "3", label: "Sections of work" },
@@ -105,7 +105,7 @@ export const aboutConfig: AboutConfig = {
     "I move fast and I'm transparent about how: most of my shipping projects are AI-assisted — built with heavy AI assistance, with the architecture, direction and review done by me. The ones that prove fundamentals are written by hand, line by line. Both matter, and this site shows the difference.",
     "Useful is the bar I aim for — I'm money-motivated, but as a driver rather than a dirty word: I want the things I build to be useful enough that someone would pay for them. It's why my work mixes ambition (an agent that grows its own language) with pragmatism (a job-application tracker that reads live job APIs).",
   ],
-  image: "/profile.jpg",
+  image: `${import.meta.env.BASE_URL}profile.jpg`,
   imageAlt: "Portrait of Zylen Saldahna",
   quizTitle: "A small project that analyses you",
   quizIntro:

@@ -72,7 +72,7 @@ export function ProjectCard({ project, index = 0, badge, lab }: ProjectCardProps
               <button
                 onClick={() => setOpen((v) => !v)}
                 aria-expanded={open}
-                className="w-full flex items-center justify-between text-left text-sm text-meta hover:text-foreground transition-colors"
+                className="w-full flex items-center justify-between text-left text-sm min-h-[44px] text-meta hover:text-foreground transition-colors"
               >
                 <span className="font-medium">How I did it</span>
                 <ChevronDown

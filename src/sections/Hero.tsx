@@ -43,7 +43,7 @@ export function Hero() {
           <div className="flex flex-col gap-5">
             {/* Stat row */}
             <Reveal delay={100}>
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {heroConfig.stats.map((stat) => (
                   <div key={stat.label} className="glass p-5 sm:p-6">
                     <div className="text-2xl sm:text-3xl font-medium text-foreground">

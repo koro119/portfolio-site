@@ -28,9 +28,15 @@ function App() {
 
   return (
     <div className="relative isolate min-h-screen bg-background text-foreground overflow-x-hidden">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-btn-fill focus:text-ink"
+      >
+        Skip to content
+      </a>
       <CursorAura />
       <Navigation />
-      <main>
+      <main id="main">
         <Hero />
         <About />
         <VibeCoded />

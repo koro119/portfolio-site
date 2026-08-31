@@ -72,7 +72,7 @@ export function VibeCoded() {
               type="button"
               aria-pressed={filter === f.id}
               onClick={() => applyFilter(f.id)}
-              className={`font-mono text-xs uppercase tracking-wider px-3 py-1.5 border transition-colors duration-200 ${
+              className={`inline-flex items-center font-mono text-xs uppercase tracking-wider px-4 min-h-[44px] border transition-colors duration-200 ${
                 filter === f.id
                   ? 'bg-btn-fill text-ink border-btn-fill'
                   : 'border-glass-border text-meta hover:border-steel hover:text-foreground'

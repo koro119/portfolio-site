@@ -72,7 +72,7 @@ export function Navigation() {
           {/* Mobile toggle */}
           <button
             aria-label="Toggle menu"
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
+            className="lg:hidden w-11 h-11 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
             onClick={() => setIsOpen((v) => !v)}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

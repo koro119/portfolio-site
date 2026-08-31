@@ -39,7 +39,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-10 h-10 border border-glass-border flex items-center justify-center text-meta hover:text-foreground hover:border-steel transition-all"
+              className="w-11 h-11 border border-glass-border flex items-center justify-center text-meta hover:text-foreground hover:border-steel transition-all"
             >
               <Github className="w-5 h-5" />
             </a>
@@ -48,21 +48,21 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-10 h-10 border border-glass-border flex items-center justify-center text-meta hover:text-foreground hover:border-steel transition-all"
+              className="w-11 h-11 border border-glass-border flex items-center justify-center text-meta hover:text-foreground hover:border-steel transition-all"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
               aria-label="Email"
-              className="w-10 h-10 border border-glass-border flex items-center justify-center text-meta hover:text-foreground hover:border-steel transition-all"
+              className="w-11 h-11 border border-glass-border flex items-center justify-center text-meta hover:text-foreground hover:border-steel transition-all"
             >
               <Mail className="w-5 h-5" />
             </a>
             <button
               onClick={scrollTop}
               aria-label="Back to top"
-              className="w-10 h-10 bg-btn-fill flex items-center justify-center text-ink hover:bg-btn-hover transition-colors"
+              className="w-11 h-11 bg-btn-fill flex items-center justify-center text-ink hover:bg-btn-hover transition-colors"
             >
               <ArrowUp className="w-4 h-4" />
             </button>
