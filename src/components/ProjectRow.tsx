@@ -1,0 +1,61 @@
+import { ExternalLink } from 'lucide-react';
+import type { ArchiveProject } from '../hooks/useProjects';
+import { Reveal } from './Reveal';
+
+interface ProjectRowProps {
+  project: ArchiveProject;
+  index?: number;
+  badge?: string;
+}
+
+/** Full-width row layout for the From Scratch section (90px / 1.1fr / 1.4fr / 200px). */
+export function ProjectRow({ project, index = 0, badge }: ProjectRowProps) {
+  return (
+    <Reveal>
+      <article className="glass grid grid-cols-1 md:grid-cols-[90px_1.1fr_1.4fr_200px] gap-5 p-6 sm:p-7 hover:bg-card-hover">
+        {/* Index */}
+        <div className="font-mono text-steel">
+          {String(index + 1).padStart(2, '0')}
+        </div>
+
+        {/* Title + tagline */}
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h3 className="text-lg font-medium text-foreground leading-snug">{project.title}</h3>
+            {badge && <span className="chip shrink-0">{badge}</span>}
+          </div>
+          <p className="mt-2 text-sm text-meta">{project.tagline}</p>
+        </div>
+
+        {/* Summary */}
+        <p className="text-sm text-meta leading-relaxed line-clamp-3">{project.summary}</p>
+
+        {/* Stack + meta */}
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-wrap gap-1.5">
+            {project.stack.slice(0, 4).map((tech) => (
+              <span key={tech} className="chip">
+                {tech}
+              </span>
+            ))}
+            {project.stack.length > 4 && <span className="chip">+{project.stack.length - 4}</span>}
+          </div>
+          <div className="mt-auto flex items-center justify-between text-xs">
+            <span className="font-mono text-meta-dim">{project.dates}</span>
+            <span className="font-mono text-steel">{project.status}</span>
+          </div>
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-steel hover:brightness-125 transition-all"
+            >
+              View on GitHub <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
+        </div>
+      </article>
+    </Reveal>
+  );
+}

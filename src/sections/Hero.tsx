@@ -1,4 +1,4 @@
-import { ChevronDown, ArrowDown } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { heroConfig } from '../config';
 import { Reveal } from '../components/Reveal';
 
@@ -7,91 +7,73 @@ export function Hero() {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const [first, ...rest] = heroConfig.name.split(' ');
+
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Background: slate base */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#15191d_0%,#0c0e10_55%,#090b0d_100%)]" />
-
-      <div className="relative z-10 container mx-auto px-5 sm:px-8 py-28 text-center">
-        {/* Photo */}
-        <Reveal>
-          <div className="relative inline-block mb-9">
-            <div className="w-36 h-36 sm:w-44 sm:h-44 overflow-hidden border border-glass-border">
-              <img
-                src={heroConfig.photo}
-                alt={heroConfig.name}
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Name */}
-        <Reveal delay={100}>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-medium tracking-tight text-foreground leading-[1.05]">
-            {heroConfig.name}
-          </h1>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <p className="mt-5 font-mono text-sm sm:text-base text-steel tracking-wide">
-            {heroConfig.tagline}
-          </p>
-        </Reveal>
-
-        <Reveal delay={300}>
-          <p className="mt-6 text-base sm:text-lg text-meta max-w-2xl mx-auto leading-relaxed">
-            {heroConfig.intro}
-          </p>
-        </Reveal>
-
-        <Reveal delay={400}>
-          <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => scrollTo(heroConfig.ctaHref)}
-              className="group px-8 py-3.5 bg-btn-fill text-ink font-medium hover:bg-btn-hover transition-colors duration-200"
-            >
-              <span className="inline-flex items-center gap-2">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+      <div className="relative z-10 container mx-auto px-5 sm:px-8 py-28">
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-5">
+          {/* Left panel — eyebrow, name, intro, one CTA */}
+          <Reveal className="glass p-8 sm:p-12 flex flex-col justify-center">
+            <span className="section-label">{heroConfig.tagline}</span>
+            <h1 className="mt-6 text-foreground">
+              {first}
+              <br />
+              {rest.join(' ')}
+            </h1>
+            <p className="mt-7 text-base sm:text-lg text-meta leading-relaxed">
+              {heroConfig.intro}
+            </p>
+            <div className="mt-9">
+              <button
+                onClick={() => scrollTo(heroConfig.ctaHref)}
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-btn-fill text-ink font-medium hover:bg-btn-hover transition-colors duration-200"
+              >
                 {heroConfig.ctaText} <ArrowDown className="w-4 h-4" />
-              </span>
-            </button>
-            <button
-              onClick={() => scrollTo('#work')}
-              className="px-8 py-3.5 border border-glass-border text-meta hover:border-steel hover:text-foreground transition-colors duration-200"
-            >
-              The human side
-            </button>
-          </div>
-        </Reveal>
+              </button>
+            </div>
+          </Reveal>
 
-        {/* Stats */}
-        <Reveal delay={500}>
-          <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg mx-auto">
-            {heroConfig.stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-2xl sm:text-3xl font-medium text-foreground">{stat.value}</div>
-                <div className="mt-1 text-xs text-meta-dim">{stat.label}</div>
+          {/* Right column — stats, photo, countdown */}
+          <div className="flex flex-col gap-5">
+            {/* Stat row */}
+            <Reveal delay={100}>
+              <div className="grid grid-cols-3 gap-5">
+                {heroConfig.stats.map((stat) => (
+                  <div key={stat.label} className="glass p-5 sm:p-6">
+                    <div className="text-2xl sm:text-3xl font-medium text-foreground">
+                      {stat.value}
+                    </div>
+                    <div className="mt-2 text-xs text-meta-dim">{stat.label}</div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </Reveal>
-      </div>
+            </Reveal>
 
-      {/* Scroll hint */}
-      <a
-        href="#about"
-        onClick={(e) => {
-          e.preventDefault();
-          scrollTo('#about');
-        }}
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-meta-dim hover:text-foreground transition-colors"
-      >
-        <span className="text-[0.65rem] font-mono tracking-[0.25em] uppercase">Scroll</span>
-        <ChevronDown className="w-4 h-4 animate-bounce" />
-      </a>
+            {/* Photo panel */}
+            <Reveal delay={200}>
+              <div className="glass overflow-hidden">
+                <img
+                  src={heroConfig.photo}
+                  alt={heroConfig.name}
+                  className="w-full aspect-[4/3] object-cover object-top"
+                />
+              </div>
+            </Reveal>
+
+            {/* Countdown panel */}
+            <Reveal delay={300}>
+              <div className="glass p-6">
+                <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-meta-dim mb-2">
+                  Graduation
+                </p>
+                <p className="font-mono text-2xl text-steel">0000 · 00:00:00</p>
+                <p className="mt-1 text-xs text-meta-dim">days · hrs · min · sec until July 2027</p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

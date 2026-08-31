@@ -1,24 +1,24 @@
 import { useProjects } from '../hooks/useProjects';
 import { SectionHeader } from '../components/SectionHeader';
-import { ProjectCard } from '../components/ProjectCard';
+import { ProjectRow } from '../components/ProjectRow';
 import { Reveal } from '../components/Reveal';
 
 export function FromScratch() {
   const projects = useProjects();
 
   return (
-    <section id="from-scratch" className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="relative z-10 container mx-auto px-5 sm:px-8">
+    <section id="from-scratch" className="relative py-24 sm:py-32">
+      <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader
-          label="02 · From Scratch"
+          label="03 — From Scratch"
           title="Hand-written, fundamentals first"
-          subtitle="No AI scaffolding here — these prove the core computer science: data structures, algorithms, compilers, models written line by line. A different accent so you can tell the sections apart at a glance."
+          subtitle="No AI scaffolding here — these prove the core computer science: data structures, algorithms, compilers, models written line by line."
         />
 
         {projects ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-5">
             {projects.fromScratch.map((project, i) => (
-              <ProjectCard
+              <ProjectRow
                 key={project.slug}
                 project={project}
                 index={i}
@@ -27,13 +27,13 @@ export function FromScratch() {
             ))}
           </div>
         ) : (
-          <p className="text-center text-meta-dim font-mono text-sm">
+          <p className="text-meta-dim font-mono text-sm">
             loading projects.json…
           </p>
         )}
 
-        <Reveal className="mt-12 text-center">
-          <p className="text-sm text-meta-dim max-w-xl mx-auto">
+        <Reveal className="mt-10">
+          <p className="text-sm text-meta-dim max-w-xl">
             The earliest entry here is a colour-blindness game from 2023 — plain HTML, CSS and JS,
             where it all started. The coursework is grouped here because that's what it was:
             fundamentals, by hand.

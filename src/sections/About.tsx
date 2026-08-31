@@ -1,47 +1,43 @@
 import { aboutConfig } from '../config';
 import { Reveal } from '../components/Reveal';
+import { SectionHeader } from '../components/SectionHeader';
 import { Quiz } from '../components/Quiz';
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="relative z-10 container mx-auto px-5 sm:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Text */}
-          <div>
-            <Reveal>
-              <span className="section-label">About</span>
-              <h2 className="mt-4 text-4xl sm:text-5xl font-medium tracking-tight text-foreground">
-                {aboutConfig.heading}
-              </h2>
-            </Reveal>
+    <section id="about" className="relative py-24 sm:py-32">
+      <div className="container mx-auto px-5 sm:px-8">
+        <SectionHeader label="01 — About" title={aboutConfig.heading} />
 
-            <div className="mt-6 space-y-5">
-              {aboutConfig.paragraphs.map((p, i) => (
-                <Reveal key={i} delay={i * 100}>
-                  <p className="text-base sm:text-lg text-meta leading-relaxed">{p}</p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          {/* Image */}
-          <Reveal delay={150}>
-            <div className="relative mx-auto max-w-sm">
-              <div className="aspect-[4/5] overflow-hidden border border-glass-border">
-                <img
-                  src={aboutConfig.image}
-                  alt={aboutConfig.imageAlt}
-                  className="w-full h-full object-cover object-top"
-                />
+        <div className="grid lg:grid-cols-2 gap-5">
+          {/* Text panel */}
+          <Reveal>
+            <div className="glass p-8 sm:p-10 h-full">
+              <div className="space-y-5">
+                {aboutConfig.paragraphs.map((p, i) => (
+                  <p key={i} className="text-base sm:text-lg text-meta leading-relaxed">
+                    {p}
+                  </p>
+                ))}
               </div>
+            </div>
+          </Reveal>
+
+          {/* Image panel */}
+          <Reveal delay={100}>
+            <div className="glass overflow-hidden h-full">
+              <img
+                src={aboutConfig.image}
+                alt={aboutConfig.imageAlt}
+                className="w-full h-full min-h-[320px] object-cover object-top"
+              />
             </div>
           </Reveal>
         </div>
 
         {/* Quiz widget */}
-        <Reveal className="mt-20 sm:mt-24">
-          <div className="max-w-2xl mx-auto">
+        <Reveal className="mt-5">
+          <div className="max-w-2xl">
             <Quiz />
           </div>
         </Reveal>

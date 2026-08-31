@@ -46,7 +46,7 @@ export function Navigation() {
           <a
             href="#hero"
             onClick={(e) => go(e, '#hero')}
-            className="text-lg font-bold tracking-tight text-foreground hover:text-steel transition-colors"
+            className="text-lg font-medium tracking-tight text-foreground hover:text-steel transition-colors"
           >
             {navigationConfig.logo}
             <span className="text-steel">/</span>

@@ -64,6 +64,7 @@ module.exports = {
         "meta-dim": "var(--meta-dim)",
         "chip-text": "var(--chip-text)",
         "glass-border": "var(--glass-border)",
+        "card-hover": "var(--card-hover)",
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
@@ -78,7 +79,8 @@ module.exports = {
         "glow-strong": "0 0 60px rgba(234, 0, 0, 0.4)",
       },
       fontFamily: {
-        sans: ['Geist', 'sans-serif'],
+        sans: ['Archivo', 'sans-serif'],
+        mono: ['Geist Mono', 'monospace'],
       },
       fontSize: {
         'display-xxl': ['168px', { lineHeight: '1.15', fontWeight: '500' }],
