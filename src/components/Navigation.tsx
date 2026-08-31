@@ -40,11 +40,10 @@ export function Navigation() {
           <a
             href="#hero"
             onClick={(e) => go(e, '#hero')}
-            className="text-lg font-medium tracking-tight text-foreground hover:text-steel transition-colors"
+            className="text-lg font-medium text-foreground hover:text-steel transition-colors"
           >
-            {navigationConfig.logo}
-            <span className="text-steel">/</span>
-            <span className="text-steel">zylen</span>
+            <span className="font-mono typewriter">{navigationConfig.logo}</span>
+            <span className="typewriter-caret" aria-hidden="true" />
           </a>
 
           {/* Desktop nav */}

@@ -153,6 +153,53 @@
   transform: translateY(0);
 }
 
+/* Typewriter brand */
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  letter-spacing: 0.02em;
+  width: 0;
+  animation: typewriter-typing 2.2s steps(9, end) 0.3s both;
+}
+@keyframes typewriter-typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 9.4ch;
+  }
+}
+.typewriter-caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.05em;
+  margin-left: 2px;
+  background: var(--teal);
+  vertical-align: text-bottom;
+  animation: typewriter-blink 1s step-end infinite;
+}
+@keyframes typewriter-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter {
+    width: 9.4ch;
+    animation: none;
+  }
+  .typewriter-caret {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

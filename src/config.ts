@@ -31,7 +31,7 @@ export interface NavItem {
 }
 
 export const navigationConfig: { logo: string; items: NavItem[] } = {
-  logo: "ZS.",
+  logo: "zylen.dev",
   items: [
     { label: "About", href: "#about" },
     { label: "AI-Assisted", href: "#AI-assisted" },
