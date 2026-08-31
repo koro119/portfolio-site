@@ -3,6 +3,7 @@ node_modules/
 dist/
 build/
 target/
+.vite/
 __pycache__/
 *.pyc
 .venv/
