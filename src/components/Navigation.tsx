@@ -6,16 +6,8 @@ import { useActiveSection } from '../hooks/useActiveSection';
 const SECTION_IDS = navigationConfig.items.map((item) => item.href.replace('#', ''));
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const active = useActiveSection(['hero', ...SECTION_IDS]);
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -36,11 +28,13 @@ export function Navigation() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-[#0c0e10]/85 backdrop-blur-md border-b border-glass-border py-3'
-            : 'bg-transparent py-5'
-        }`}
+        style={{
+          background: 'rgba(18, 21, 24, 0.55)',
+          backdropFilter: 'blur(56px) saturate(1.35)',
+          WebkitBackdropFilter: 'blur(56px) saturate(1.35)',
+          boxShadow: '0 10px 30px rgba(8, 10, 12, 0.30)',
+        }}
+        className="sticky top-0 z-50 border-b border-glass-border py-3"
       >
         <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between">
           <a

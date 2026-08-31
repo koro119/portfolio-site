@@ -5,7 +5,11 @@ import { Code2 } from 'lucide-react';
 
 export function MakingOf() {
   return (
-    <section id="making" className="relative py-24 sm:py-32">
+    <section
+      id="making"
+      className="relative py-24 sm:py-32"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(15,18,21,0.52), rgba(14,20,21,0.60))' }}
+    >
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader
           label="06 — Behind the scenes"

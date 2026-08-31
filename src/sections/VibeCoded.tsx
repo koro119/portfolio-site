@@ -7,7 +7,11 @@ export function VibeCoded() {
   const projects = useProjects();
 
   return (
-    <section id="AI-assisted" className="relative py-24 sm:py-32">
+    <section
+      id="AI-assisted"
+      className="relative py-24 sm:py-32"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(21,25,29,0.20), rgba(19,23,27,0.28))' }}
+    >
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader
           label="02 — AI-Assisted"

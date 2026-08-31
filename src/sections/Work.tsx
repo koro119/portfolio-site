@@ -4,7 +4,11 @@ import { SectionHeader } from '../components/SectionHeader';
 
 export function Work() {
   return (
-    <section id="work" className="relative py-24 sm:py-32">
+    <section
+      id="work"
+      className="relative py-24 sm:py-32"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(16,20,23,0.44), rgba(15,18,21,0.52))' }}
+    >
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader label="05 — Work" title={workConfig.heading} />
 

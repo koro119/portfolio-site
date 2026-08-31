@@ -13,7 +13,11 @@ export function ConceptualExperiments() {
   const rest = conceptual.filter((p) => p.slug !== 'idea-50-sim');
 
   return (
-    <section id="experiments" className="relative py-24 sm:py-32">
+    <section
+      id="experiments"
+      className="relative py-24 sm:py-32"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(17,21,25,0.36), rgba(16,20,23,0.44))' }}
+    >
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader
           label="04 — Conceptual Experiments"

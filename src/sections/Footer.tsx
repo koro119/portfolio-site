@@ -5,9 +5,10 @@ export function Footer() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative border-t border-glass-border">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0a0c0e]" />
-
+    <footer
+      className="relative border-t border-glass-border"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(14,20,21,0.60), rgba(10,12,14,0.70))' }}
+    >
       <div className="relative z-10 container mx-auto px-5 sm:px-8 py-14">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
           {/* Brand */}

@@ -7,7 +7,11 @@ export function FromScratch() {
   const projects = useProjects();
 
   return (
-    <section id="from-scratch" className="relative py-24 sm:py-32">
+    <section
+      id="from-scratch"
+      className="relative py-24 sm:py-32"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(19,23,27,0.28), rgba(17,21,25,0.36))' }}
+    >
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader
           label="03 — From Scratch"

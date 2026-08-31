@@ -5,7 +5,11 @@ import { Quiz } from '../components/Quiz';
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section
+      id="about"
+      className="relative py-24 sm:py-32"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(23,27,31,0.12), rgba(21,25,29,0.20))' }}
+    >
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader label="01 — About" title={aboutConfig.heading} />
 

@@ -10,7 +10,11 @@ export function Hero() {
   const [first, ...rest] = heroConfig.name.split(' ');
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ backgroundImage: 'linear-gradient(180deg, rgba(26,30,34,0), rgba(23,27,31,0.12))' }}
+    >
       <div className="relative z-10 container mx-auto px-5 sm:px-8 py-28">
         <div className="grid lg:grid-cols-[1.15fr_1fr] gap-5">
           {/* Left panel — eyebrow, name, intro, one CTA */}
