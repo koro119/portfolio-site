@@ -1,6 +1,7 @@
 import { ArrowDown } from 'lucide-react';
 import { heroConfig } from '../config';
 import { Reveal } from '../components/Reveal';
+import { Countdown } from '../components/Countdown';
 
 export function Hero() {
   const scrollTo = (href: string) => {
@@ -67,12 +68,8 @@ export function Hero() {
 
             {/* Countdown panel */}
             <Reveal delay={300}>
-              <div className="glass p-6">
-                <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-meta-dim mb-2">
-                  Graduation
-                </p>
-                <p className="font-mono text-2xl text-steel">0000 · 00:00:00</p>
-                <p className="mt-1 text-xs text-meta-dim">days · hrs · min · sec until July 2027</p>
+              <div className="glass p-6" id="countdown">
+                <Countdown />
               </div>
             </Reveal>
           </div>
