@@ -1,111 +1,113 @@
-import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { navigationConfig } from '../config';
+import { useActiveSection } from '../hooks/useActiveSection';
 
-gsap.registerPlugin(ScrollTrigger);
+const SECTION_IDS = navigationConfig.items.map((item) => item.href.replace('#', ''));
 
 export function Navigation() {
-  const navRef = useRef<HTMLElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  if (!navigationConfig.logo) return null;
+  const [isOpen, setIsOpen] = useState(false);
+  const active = useActiveSection(['hero', ...SECTION_IDS]);
 
   useEffect(() => {
-    const trigger = ScrollTrigger.create({
-      start: '100px top',
-      end: 'max',
-      onUpdate: (self) => {
-        setIsScrolled(self.progress > 0);
-      },
-    });
-
-    return () => {
-      trigger.kill();
-    };
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    setIsOpen(false);
   };
+
+  const isActive = (href: string) => active === href.replace('#', '');
 
   return (
     <>
       <nav
-        ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-black/80 backdrop-blur-md py-4'
-            : 'bg-transparent py-6'
+            ? 'bg-[#0a0612]/85 backdrop-blur-md border-b border-violet-500/10 py-3'
+            : 'bg-transparent py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 flex items-center justify-between">
-          {/* Logo */}
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between">
           <a
             href="#hero"
-            onClick={(e) => handleNavClick(e, '#hero')}
-            className="text-h6 font-medium text-white hover:text-highlight transition-colors duration-300"
+            onClick={(e) => go(e, '#hero')}
+            className="text-lg font-bold tracking-tight text-white hover:text-violet-300 transition-colors"
           >
             {navigationConfig.logo}
+            <span className="text-violet-400">/</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
+              zylen
+            </span>
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-8">
             {navigationConfig.items.map((item) => (
               <a
-                key={item.label}
+                key={item.href}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="text-body text-white/70 hover:text-white transition-colors duration-300 relative group"
+                onClick={(e) => go(e, item.href)}
+                className={`relative text-sm transition-colors duration-200 ${
+                  isActive(item.href)
+                    ? 'text-violet-300'
+                    : 'text-violet-200/60 hover:text-white'
+                }`}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-highlight group-hover:w-full transition-all duration-300" />
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px bg-gradient-to-r from-violet-400 to-cyan-400 transition-all duration-300 ${
+                    isActive(item.href) ? 'w-full' : 'w-0'
+                  }`}
+                />
               </a>
             ))}
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile toggle */}
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-violet-100 hover:text-white transition-colors"
+            onClick={() => setIsOpen((v) => !v)}
           >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </nav>
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 z-40 bg-black transition-all duration-500 lg:hidden ${
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
+        className={`fixed inset-0 z-40 lg:hidden bg-[#08040f]/97 backdrop-blur-xl transition-opacity duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
+        <div className="flex flex-col items-center justify-center h-full gap-7">
           {navigationConfig.items.map((item, i) => (
             <a
-              key={item.label}
+              key={item.href}
               href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="text-h3 text-white hover:text-highlight transition-colors duration-300"
+              onClick={(e) => go(e, item.href)}
+              className={`text-3xl font-semibold transition-all duration-500 ${
+                isActive(item.href) ? 'text-violet-300' : 'text-white hover:text-violet-300'
+              }`}
               style={{
-                transform: isMobileMenuOpen
-                  ? 'translateY(0)'
-                  : 'translateY(20px)',
-                opacity: isMobileMenuOpen ? 1 : 0,
-                transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`,
+                transform: isOpen ? 'translateY(0)' : 'translateY(24px)',
+                opacity: isOpen ? 1 : 0,
+                transitionDelay: `${i * 0.06}s`,
               }}
             >
               {item.label}

@@ -1,71 +1,75 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { footerConfig } from '../config';
+import { Mail, Github, Linkedin, ArrowUp } from 'lucide-react';
+import { footerConfig, siteConfig, navigationConfig } from '../config';
 
 export function Footer() {
-  const marqueeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (marqueeRef.current) {
-      const content = marqueeRef.current.querySelector('.marquee-content');
-      if (content) {
-        gsap.to(content, {
-          x: '-50%',
-          duration: 20,
-          ease: 'none',
-          repeat: -1,
-        });
-      }
-    }
-  }, []);
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative overflow-hidden">
-      {/* Marquee */}
-      <div
-        ref={marqueeRef}
-        className="py-8 border-t border-zinc-800/50 overflow-hidden"
-      >
-        <div className="marquee-content flex whitespace-nowrap">
-          {[...Array(4)].map((_, i) => (
-            <span
-              key={i}
-              className="text-6xl sm:text-7xl lg:text-8xl font-bold text-zinc-800/50 mx-8"
+    <footer className="relative border-t border-violet-500/10">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050208]" />
+
+      <div className="relative z-10 container mx-auto px-5 sm:px-8 py-14">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
+          {/* Brand */}
+          <div className="text-center md:text-left">
+            <h3 className="text-xl font-bold text-white">Zylen Saldahna</h3>
+            <p className="mt-1.5 text-sm text-violet-200/50 max-w-xs">
+              {footerConfig.tagline}
+            </p>
+          </div>
+
+          {/* Nav */}
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {navigationConfig.items.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm text-violet-200/60 hover:text-white transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Contact */}
+          <div className="flex items-center gap-4">
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="w-10 h-10 rounded-full border border-violet-400/20 flex items-center justify-center text-violet-200/70 hover:text-white hover:border-violet-400/60 hover:shadow-[0_0_18px_rgba(139,92,246,0.18)] transition-all"
             >
-              {footerConfig.marqueeText}
-            </span>
-          ))}
+              <Github className="w-5 h-5" />
+            </a>
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-10 h-10 rounded-full border border-violet-400/20 flex items-center justify-center text-violet-200/70 hover:text-white hover:border-cyan-400/60 hover:shadow-[0_0_18px_rgba(34,211,238,0.18)] transition-all"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              aria-label="Email"
+              className="w-10 h-10 rounded-full border border-violet-400/20 flex items-center justify-center text-violet-200/70 hover:text-white hover:border-pink-400/60 hover:shadow-[0_0_18px_rgba(236,72,153,0.18)] transition-all"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+            <button
+              onClick={scrollTop}
+              aria-label="Back to top"
+              className="w-10 h-10 rounded-full bg-gradient-to-r from-violet-400 to-purple-400 flex items-center justify-center text-white hover:scale-110 transition-transform shadow-[0_0_18px_rgba(168,85,247,0.25)]"
+            >
+              <ArrowUp className="w-4 h-4" />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Footer content */}
-      <div className="py-12 border-t border-zinc-800/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            {/* Logo/Name */}
-            <div className="text-center sm:text-left">
-              <h3 className="text-2xl font-bold text-white mb-1">Zylen Saldahna</h3>
-              <p className="text-sm text-zinc-500">{footerConfig.tagline}</p>
-            </div>
-
-            {/* Navigation */}
-            <nav className="flex flex-wrap justify-center gap-6">
-              {['About', 'Projects', 'Skills', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-sm text-zinc-400 hover:text-white transition-colors duration-300"
-                >
-                  {item}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Copyright */}
-          <div className="mt-12 pt-8 border-t border-zinc-800/50 text-center">
-            <p className="text-sm text-zinc-600">{footerConfig.copyright}</p>
-          </div>
+        <div className="mt-12 pt-6 border-t border-violet-500/10 text-center">
+          <p className="text-xs text-violet-200/30">{footerConfig.copyright}</p>
         </div>
       </div>
     </footer>

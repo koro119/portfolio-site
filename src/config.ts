@@ -1,21 +1,28 @@
 // ============================================================================
-// Site Configuration
+// Site Configuration — edit content here. Projects come from /projects.json.
 // ============================================================================
 
 export interface SiteConfig {
   title: string;
   description: string;
   language: string;
+  github: string;
+  linkedin: string;
+  email: string;
 }
 
 export const siteConfig: SiteConfig = {
-  title: "Zylen Saldahna | AI Engineer & CS Student",
-  description: "Computer Science student at University of Greenwich specializing in AI, Machine Learning, and intelligent systems.",
+  title: "Zylen Saldahna — AI / ML Computer Science Student",
+  description:
+    "Final-year Computer Science student at the University of Greenwich specialising in AI and machine learning. Building intelligent systems — from agentic OS projects to dual-engine crime forecasting.",
   language: "en",
+  github: "https://github.com/koro119",
+  linkedin: "https://www.linkedin.com/in/zylen-saldahna-547003212",
+  email: "koro119@gmail.com",
 };
 
 // ============================================================================
-// Navigation Configuration
+// Navigation
 // ============================================================================
 
 export interface NavItem {
@@ -23,398 +30,300 @@ export interface NavItem {
   href: string;
 }
 
-export interface NavigationConfig {
-  logo: string;
-  items: NavItem[];
-}
-
-export const navigationConfig: NavigationConfig = {
-  logo: "",
+export const navigationConfig: { logo: string; items: NavItem[] } = {
+  logo: "ZS.",
   items: [
     { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Skills", href: "#skills" },
-    { label: "Journey", href: "#journey" },
-    { label: "Terminal", href: "#terminal" },
-    { label: "Contact", href: "#contact" },
+    { label: "AI-Assisted", href: "#AI-assisted" },
+    { label: "From Scratch", href: "#from-scratch" },
+    { label: "Experiments", href: "#experiments" },
+    { label: "Work", href: "#work" },
+    { label: "Making Of", href: "#making" },
   ],
 };
 
 // ============================================================================
-// Hero Section Configuration
+// Hero
 // ============================================================================
 
 export interface HeroConfig {
-  title: string;
-  subtitle: string;
+  name: string;
   tagline: string;
+  intro: string;
   ctaText: string;
-  profileImage: string;
-  backgroundImage: string;
+  ctaHref: string;
+  photo: string;
+  stats: { value: string; label: string }[];
 }
 
 export const heroConfig: HeroConfig = {
-  title: "Zylen Saldahna",
-  subtitle: "Computer Science Student | Future AI Engineer",
-  tagline: "Building Intelligent Systems & Real-World AI Solutions",
-  ctaText: "Explore My Work",
-  profileImage: "/profile.jpg",
-  backgroundImage: "/hero-bg.jpg",
+  name: "Zylen Saldahna",
+  tagline: "Final-year CS student · AI / ML focus · Building intelligent systems",
+  intro:
+    "I'm a final-year Computer Science student at the University of Greenwich, specialising in AI and machine learning. I'm quick to generate ideas and prone to jumping between projects fast — impulsive in the creative sense: an idea lands and I'm building it the same week. Some become shipped apps, others become findings. I'm money-motivated in the best way: I want what I build to be useful enough that someone would pay for it.",
+  ctaText: "See what I've built",
+  ctaHref: "#AI-assisted",
+  photo: "/profile.jpg",
+  stats: [
+    { value: "27", label: "Projects" },
+    { value: "3", label: "Sections of work" },
+    { value: "2023", label: "Started coding" },
+  ],
 };
 
 // ============================================================================
-// About Section Configuration
+// About
 // ============================================================================
 
+export interface QuizOption {
+  label: string;
+  points: { [archetype: string]: number };
+}
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: QuizOption[];
+}
+
 export interface AboutConfig {
-  title: string;
-  description: string;
+  heading: string;
+  paragraphs: string[];
   image: string;
-  stats: { label: string; value: string }[];
+  imageAlt: string;
+  quizTitle: string;
+  quizNote: string;
+  quizIntro: string;
+  archetypes: { [key: string]: { title: string; text: string } };
+  questions: QuizQuestion[];
 }
 
 export const aboutConfig: AboutConfig = {
-  title: "About Me",
-  description: "I am a Computer Science student at the University of Greenwich with a strong interest in Artificial Intelligence and Machine Learning. I enjoy building systems that combine software and hardware — from smart vision-based prototypes to data-driven applications. My long-term goal is to work in the AI and Machine Learning sector, building intelligent systems that solve real-world problems.",
+  heading: "About me",
+  paragraphs: [
+    "I'm a final-year Computer Science student at the University of Greenwich, specialising in Artificial Intelligence and Machine Learning. I build systems that combine software, hardware and models — from a dual-engine crime forecasting pipeline (XGBoost + a local LLM reading the news) to a personal agentic OS written in Rust.",
+    "I move fast and I'm transparent about how: most of my shipping projects are AI-assisted — built with heavy AI assistance, with the architecture, direction and review done by me. The ones that prove fundamentals are written by hand, line by line. Both matter, and this site shows the difference.",
+    "Useful is the bar I aim for — I'm money-motivated, but as a driver rather than a dirty word: I want the things I build to be useful enough that someone would pay for them. It's why my work mixes ambition (an agent that grows its own language) with pragmatism (a job-application tracker that reads live job APIs).",
+  ],
   image: "/profile.jpg",
-  stats: [
-    { label: "Projects", value: "6+" },
-    { label: "Technologies", value: "15+" },
-    { label: "Years Coding", value: "3+" },
-  ],
-};
-
-// ============================================================================
-// Projects Section Configuration
-// ============================================================================
-
-export interface ProjectItem {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  technologies: string[];
-}
-
-export interface ProjectsConfig {
-  title: string;
-  subtitle: string;
-  projects: ProjectItem[];
-}
-
-export const projectsConfig: ProjectsConfig = {
-  title: "Projects",
-  subtitle: "A collection of my work in AI, computer vision, and software development.",
-  projects: [
-    {
-      id: 1,
-      title: "Space Debris Monitoring & Collision Prediction",
-      category: "AI / Space Tech",
-      description: "System design for monitoring orbital debris and predicting satellite collision risks using predictive algorithms.",
-      image: "/project-space-debris.jpg",
-      technologies: ["Python", "Data Analysis", "Predictive Modeling"],
+  imageAlt: "Portrait of Zylen Saldahna",
+  quizTitle: "A small project that analyses you",
+  quizIntro:
+    "Answer a few questions about how you work and this little model will analyse you — because why not. It's a small rules-based project I built (a weighted scoring script, honestly), not a cloud API.",
+  quizNote: "Readout generated by a small model I built — weighted scoring over four dimensions. No LLM, just rules.",
+  archetypes: {
+    velocity: {
+      title: "The Velocity Builder",
+      text: "You optimise for shipped over perfect. You'd rather have a working thing today and a better one next week than a perfect one never. You use AI tools as a force multiplier and you're unapologetic about it — because the alternative is not building at all.",
     },
-    {
-      id: 2,
-      title: "Smart Reading Glasses Prototype",
-      category: "Hardware / AI",
-      description: "Raspberry Pi Zero 2 W + camera integration with live video capture and Python-based AI assistant processing.",
-      image: "/project-smart-glasses.jpg",
-      technologies: ["Raspberry Pi", "Python", "Computer Vision", "Embedded Systems"],
+    idea: {
+      title: "The Idea Engine",
+      text: "Your bottleneck was never ideas — it's deciding which one to chase this week. You generate constantly, prototype fast, and let the market (or the grade) tell you what's worth finishing. The graveyard of half-built projects is a feature, not a bug.",
     },
-    {
-      id: 3,
-      title: "Hand Sign Recognition System",
-      category: "Computer Vision / ML",
-      description: "ASL recognition using pre-trained CNN models with Kaggle dataset integration and real-time video inference.",
-      image: "/project-asl.jpg",
-      technologies: ["CNN", "TensorFlow", "OpenCV", "Python"],
+    systems: {
+      title: "The Systems Thinker",
+      text: "You don't build features, you build machines that build features. Agents, pipelines, engines — you like the architecture layer, where the interesting leverage lives. You'll happily spend a week making something that saves you an hour a day, forever.",
     },
-    {
-      id: 4,
-      title: "Python Blackjack Game",
-      category: "Game Development",
-      description: "Object-oriented programming implementation with complete game logic and player management.",
-      image: "/project-blackjack.jpg",
-      technologies: ["Python", "OOP", "Game Logic"],
+    money: {
+      title: "The Pragmatist",
+      text: "You ask 'who would pay for this?' before you ask 'is this cool?'. You value outcomes — revenue, grades, real users — and you structure your work around proving value, not just demonstrating skill.",
     },
-    {
-      id: 5,
-      title: "Family Tree System",
-      category: "Data Structures",
-      description: "OOP Python project featuring custom Person class, object relationships, and dictionary-based data structure.",
-      image: "/project-family-tree.jpg",
-      technologies: ["Python", "OOP", "Data Structures"],
-    },
-    {
-      id: 6,
-      title: "Boolean Postfix Calculator",
-      category: "Algorithms",
-      description: "Stack-based expression evaluation with parsing logic for boolean operations.",
-      image: "/project-calculator.jpg",
-      technologies: ["Python", "Stacks", "Parsing", "Algorithms"],
-    },
-  ],
-};
-
-// ============================================================================
-// Skills Section Configuration
-// ============================================================================
-
-export interface SkillCategory {
-  name: string;
-  skills: { name: string; level: number }[];
-}
-
-export interface SkillsConfig {
-  title: string;
-  subtitle: string;
-  categories: SkillCategory[];
-}
-
-export const skillsConfig: SkillsConfig = {
-  title: "Skills",
-  subtitle: "Technologies and tools I work with to build intelligent systems.",
-  categories: [
-    {
-      name: "Programming",
-      skills: [
-        { name: "Python", level: 90 },
-        { name: "Shell Scripting", level: 75 },
-        { name: "Object-Oriented Programming", level: 85 },
-      ],
-    },
-    {
-      name: "AI & Data",
-      skills: [
-        { name: "CNN Models", level: 80 },
-        { name: "Computer Vision", level: 85 },
-        { name: "Dataset Integration", level: 75 },
-        { name: "Model Inference", level: 80 },
-      ],
-    },
-    {
-      name: "Systems & Hardware",
-      skills: [
-        { name: "Raspberry Pi", level: 85 },
-        { name: "Camera Modules", level: 80 },
-        { name: "Embedded Prototyping", level: 75 },
-      ],
-    },
-    {
-      name: "Tools",
-      skills: [
-        { name: "Git", level: 85 },
-        { name: "Linux", level: 80 },
-        { name: "VS Code", level: 90 },
-      ],
-    },
-  ],
-};
-
-// ============================================================================
-// Journey Section Configuration
-// ============================================================================
-
-export interface JourneyConfig {
-  title: string;
-  subtitle: string;
-  steps: { text: string; highlight: string }[];
-  profileImage: string;
-}
-
-export const journeyConfig: JourneyConfig = {
-  title: "My Journey",
-  subtitle: "From simple scripts to intelligent systems",
-  steps: [
-    { text: "I started with simple Python scripts...", highlight: "Python" },
-    { text: "Then I built intelligent systems...", highlight: "Intelligent Systems" },
-    { text: "Now I'm building AI-powered solutions.", highlight: "AI Solutions" },
-  ],
-  profileImage: "/profile.jpg",
-};
-
-// ============================================================================
-// Terminal Section Configuration
-// ============================================================================
-
-export interface TerminalConfig {
-  title: string;
-  subtitle: string;
-  commands: Record<string, string[]>;
-}
-
-export const terminalConfig: TerminalConfig = {
-  title: "Interactive Terminal",
-  subtitle: "Type commands to learn more about me",
-  commands: {
-    help: [
-      "Available commands:",
-      "  about     - Learn about Zylen",
-      "  projects  - View project highlights",
-      "  skills    - See technical skills",
-      "  contact   - Get contact information",
-      "  clear     - Clear terminal",
-    ],
-    about: [
-      "Zylen Saldahna",
-      "================",
-      "Computer Science Student at University of Greenwich",
-      "",
-      "Passionate about AI and Machine Learning",
-      "Building systems that combine software and hardware",
-      "Goal: Work in AI/ML sector solving real-world problems",
-    ],
-    projects: [
-      "Featured Projects:",
-      "==================",
-      "1. Space Debris Monitoring & Collision Prediction",
-      "2. Smart Reading Glasses Prototype (Raspberry Pi)",
-      "3. Hand Sign Recognition System (ASL)",
-      "4. Python Blackjack Game",
-      "5. Family Tree System",
-      "6. Boolean Postfix Calculator",
-    ],
-    skills: [
-      "Technical Skills:",
-      "=================",
-      "Languages: Python, Shell Scripting",
-      "AI/ML: CNN, Computer Vision, Model Inference",
-      "Hardware: Raspberry Pi, Camera Modules",
-      "Tools: Git, Linux, VS Code",
-    ],
-    contact: [
-      "Contact Information:",
-      "====================",
-      "Email: zylen.saldahna@example.com",
-      "LinkedIn: linkedin.com/in/zylensaldahna",
-      "GitHub: github.com/zylensaldahna",
-    ],
   },
+  questions: [
+    {
+      id: "speed",
+      question: "When an idea lands, what do you do?",
+      options: [
+        { label: "Start building the same week — imperfect and fast", points: { velocity: 2, money: 1 } },
+        { label: "Sketch it, plan it, then build", points: { systems: 2, idea: 1 } },
+        { label: "Let it sit while three new ideas land", points: { idea: 2 } },
+        { label: "Ask who'd pay for it before writing code", points: { money: 2, velocity: 1 } },
+      ],
+    },
+    {
+      id: "ai",
+      question: "AI coding tools are…",
+      options: [
+        { label: "A force multiplier — I ship 5x faster", points: { velocity: 2, money: 1 } },
+        { label: "A co-architect — great for hard systems problems", points: { systems: 2 } },
+        { label: "Fuel for ideas — I build things I'd never have time for", points: { idea: 2 } },
+        { label: "Careful with them — fundamentals come from writing it myself", points: { systems: 1, velocity: 1 } },
+      ],
+    },
+    {
+      id: "motivation",
+      question: "What actually gets you out of bed?",
+      options: [
+        { label: "Money and outcomes — value you can measure", points: { money: 2 } },
+        { label: "A problem so interesting I can't stop thinking about it", points: { idea: 2, systems: 1 } },
+        { label: "Shipping — that green 'deployed' button", points: { velocity: 2 } },
+        { label: "Building the machine that builds things", points: { systems: 2 } },
+      ],
+    },
+    {
+      id: "style",
+      question: "Your natural work style?",
+      options: [
+        { label: "Jump between projects — energy decides the queue", points: { idea: 2, velocity: 1 } },
+        { label: "Deep focus on one thing until it's done", points: { velocity: 1, systems: 1 } },
+        { label: "Systemise everything — processes over heroics", points: { systems: 2 } },
+        { label: "Work backwards from the outcome that pays", points: { money: 2 } },
+      ],
+    },
+  ],
 };
 
 // ============================================================================
-// Contact Section Configuration
+// Work Experience
 // ============================================================================
 
-export interface ContactConfig {
-  title: string;
-  subtitle: string;
-  email: string;
-  linkedin: string;
-  github: string;
-  ctaText: string;
+export interface WorkRole {
+  role: string;
+  place: string;
+  dates: string;
+  points: string[];
 }
 
-export const contactConfig: ContactConfig = {
-  title: "Let's Connect",
-  subtitle: "Interested in collaborating or have a question? Reach out!",
-  email: "zylen.saldahna@example.com",
-  linkedin: "linkedin.com/in/zylensaldahna",
-  github: "github.com/zylensaldahna",
-  ctaText: "Get In Touch",
+export interface WorkConfig {
+  heading: string;
+  statement: string;
+  intro: string;
+  roles: WorkRole[];
+}
+
+export const workConfig: WorkConfig = {
+  heading: "I am not just 1s & 0s",
+  statement:
+    "Before the models, there was the real world — and it taught me things a compiler never will.",
+  intro:
+    "I've worked real jobs since before university — hospitality, service, supervision. It's the part of my background that's easy to leave off a CS portfolio, but it's where the work ethic came from. Responsibility, pressure, customers, earning my own money — all of it.",
+  roles: [
+    {
+      role: "Supervisor",
+      place: "Farmer J · London",
+      dates: "May 2023 → Present",
+      points: [
+        "Started as a barista and worked up to running the shift — opening, lunch service and peak-period planning through team briefings and position allocation.",
+        "Train new staff, de-escalate conflict, and keep the team moving through high-volume corporate orders.",
+        "Oversee food production for the next day and keep inventory right.",
+      ],
+    },
+    {
+      role: "Bartender",
+      place: "Oasis Lounge by Melaya · Leicester",
+      dates: "Nov 2022 → Apr 2023",
+      points: [
+        "Walked in with no experience, learned the classic cocktail list, then ran the bar solo when it mattered.",
+        "Crossed into the kitchen — cheese and deli boards, crepes, desserts — and covered every shift type.",
+        "Stock control, end-of-day cash reconciliation, plus social media and event promotion.",
+      ],
+    },
+    {
+      role: "Barista",
+      place: "The Real Eating Company · Marble Arch",
+      dates: "Jan 2022 → Aug 2022",
+      points: [
+        "Went from basics to latte art in about four months, and picked up the morning-chef role for English breakfasts.",
+        "Opening and closing the shop, stock and ordering, and covering other locations when short-staffed.",
+        "The unglamorous part nobody sees: deep-cleaning and calibrating the espresso machine and grinder.",
+      ],
+    },
+    {
+      role: "Barista / Bartender",
+      place: "Marriott Grosvenor Square · Marble Arch",
+      dates: "Sep 2021 → Dec 2021",
+      points: [
+        "Started on breakfast service — serving, cleaning, setting tables and restocking.",
+        "Trained up to the coffee bar, where I first learned to steam milk properly for different drinks.",
+      ],
+    },
+    {
+      role: "Bubble Tea Barista",
+      place: "Bubbleology · Notting Hill",
+      dates: "Jul 2021 → Sep 2021",
+      points: [
+        "Early days of working life: learned responsibility and accountability, fast.",
+        "Tapioca prep is a multi-stage process with exact measurements — taught me to work methodically.",
+        "Ran peak times both solo and in a team, and opened and shut the shop on my own.",
+      ],
+    },
+    {
+      role: "Customer Service",
+      place: "Knights Sound & Lights",
+      dates: "Mar 2019",
+      points: [
+        "First taste of work: restocking, labelling, ordering, customers and Microsoft Office.",
+        "Keeping the store clean and running — the fundamentals before everything else.",
+      ],
+    },
+  ],
 };
 
 // ============================================================================
-// Footer Configuration
+// Making of This Website
+// ============================================================================
+
+export interface MakingStep {
+  phase: string;
+  title: string;
+  text: string;
+}
+
+export interface MakingConfig {
+  heading: string;
+  intro: string;
+  honest: string;
+  steps: MakingStep[];
+  closing: string;
+}
+
+export const makingConfig: MakingConfig = {
+  heading: "The making of this website",
+  intro:
+    "A behind-the-scenes look at how this site was planned and built — including the parts most portfolios leave out.",
+  honest:
+    "Yes — this frontend was AI-assisted. That's a deliberate, transparent choice, not a secret: I directed the plan, the structure and every design decision; AI tools turned the direction into code at speed. The result is a working site in a fraction of the time, and the process itself is the case study below.",
+  steps: [
+    {
+      phase: "01 · Concept",
+      title: "Plan first, code second",
+      text: "The site started as a written plan — section by section, prompt by prompt. Structure: Hero, AI-Assisted, From Scratch, Experiments, Work, Making Of. Every section had a purpose before a single line of code existed.",
+    },
+    {
+      phase: "02 · Archive",
+      title: "The projects feed",
+      text: "The real work was the archive: 27 repos, each with a README and tags — AI-assisted, from-scratch, conceptual-experiment. projects.json is the machine-readable index that feeds this site. Content first, then the page.",
+    },
+    {
+      phase: "03 · Build",
+      title: "AI-assisted frontend",
+      text: "The frontend was generated with AI assistance against the plan: React + Vite + Tailwind, a lavender/violet theme with neon accents, scroll-reveal animations, and a data-driven project grid that filters by tag.",
+    },
+    {
+      phase: "04 · Iterate",
+      title: "Direction, review, polish",
+      text: "The part that isn't magic: iteration. Theme decisions, section naming ('Essential Experiments' → 'Conceptual Experiments'), the 'not just 1s & 0s' line in the Work section — all direction. The tool executes; the taste is mine.",
+    },
+    {
+      phase: "05 · Ship",
+      title: "Deploy and maintain",
+      text: "This site is itself an AI-assisted project in the archive — proof that the method ships. It'll live on GitHub Pages or Netlify, and the projects feed means updating it is editing one JSON file.",
+    },
+  ],
+  closing:
+    "The takeaway: AI-assisted development is a strength when it's combined with real direction. The tool does the typing; the thinking is the product.",
+};
+
+// ============================================================================
+// Footer
 // ============================================================================
 
 export interface FooterConfig {
-  marqueeText: string;
-  copyright: string;
   tagline: string;
+  copyright: string;
 }
 
 export const footerConfig: FooterConfig = {
-  marqueeText: "Building the Future with AI",
-  copyright: "© 2024 Zylen Saldahna. All rights reserved.",
-  tagline: "Computer Science Student | AI Enthusiast",
-};
-
-// ============================================================================
-// Legacy Configs (for template compatibility)
-// ============================================================================
-
-export const heroConfigLegacy = {
-  title: "",
-  subtitle: "",
-  backgroundImage: "",
-  servicesLabel: "",
-  copyright: "",
-};
-
-export const aboutConfigLegacy = {
-  titleLine1: "",
-  titleLine2: "",
-  description: "",
-  image1: "",
-  image1Alt: "",
-  image2: "",
-  image2Alt: "",
-  authorImage: "",
-  authorName: "",
-  authorBio: "",
-};
-
-export const worksConfig = {
-  title: "",
-  subtitle: "",
-  projects: [],
-};
-
-export const servicesConfig = {
-  title: "",
-  subtitle: "",
-  services: [],
-};
-
-export const testimonialsConfig = {
-  title: "",
-  testimonials: [],
-};
-
-export const pricingConfig = {
-  title: "",
-  subtitle: "",
-  ctaButtonText: "",
-  plans: [],
-};
-
-export const faqConfig = {
-  title: "",
-  faqs: [],
-};
-
-export const blogConfig = {
-  title: "",
-  subtitle: "",
-  allPostsLabel: "",
-  readMoreLabel: "",
-  readTimePrefix: "",
-  posts: [],
-};
-
-export const contactConfigLegacy = {
-  title: "",
-  subtitle: "",
-  nameLabel: "",
-  emailLabel: "",
-  projectTypeLabel: "",
-  projectTypePlaceholder: "",
-  projectTypeOptions: [],
-  messageLabel: "",
-  submitButtonText: "",
-  image: "",
-};
-
-export const footerConfigLegacy = {
-  marqueeText: "",
-  marqueeHighlightChars: [],
-  navLinks1: [],
-  navLinks2: [],
-  ctaText: "",
-  ctaHref: "",
-  copyright: "",
-  tagline: "",
+  tagline: "Final-year Computer Science student — building intelligent systems that ship.",
+  copyright: `© ${new Date().getFullYear()} Zylen Saldahna. Built with direction + AI assistance.`,
 };

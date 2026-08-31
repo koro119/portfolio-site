@@ -1,178 +1,103 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowDown } from 'lucide-react';
 import { heroConfig } from '../config';
+import { Reveal } from '../components/Reveal';
 
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Initial animation timeline
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      // Animate profile image
-      tl.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 0.8, y: 50 },
-        { opacity: 1, scale: 1, y: 0, duration: 1.2 }
-      );
-
-      // Animate title character by character
-      if (titleRef.current) {
-        const chars = titleRef.current.querySelectorAll('.char');
-        tl.fromTo(
-          chars,
-          { opacity: 0, y: 100, rotateX: -90 },
-          { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.03 },
-          '-=0.8'
-        );
-      }
-
-      // Animate subtitle
-      tl.fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        '-=0.4'
-      );
-
-      // Animate tagline
-      tl.fromTo(
-        taglineRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        '-=0.5'
-      );
-
-      // Animate CTA button
-      tl.fromTo(
-        ctaRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6 },
-        '-=0.3'
-      );
-
-      // Parallax effect on mouse move for profile image
-      const handleMouseMove = (e: MouseEvent) => {
-        if (!imageRef.current) return;
-        const { clientX, clientY } = e;
-        const { innerWidth, innerHeight } = window;
-        const x = (clientX / innerWidth - 0.5) * 20;
-        const y = (clientY / innerHeight - 0.5) * 20;
-
-        gsap.to(imageRef.current, {
-          x,
-          y,
-          duration: 0.5,
-          ease: 'power2.out',
-        });
-      };
-
-      window.addEventListener('mousemove', handleMouseMove);
-
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-      };
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollTo = (href: string) => {
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const titleChars = heroConfig.title.split('').map((char, i) => (
-    <span key={i} className="char inline-block" style={{ display: char === ' ' ? 'inline' : 'inline-block' }}>
-      {char === ' ' ? '\u00A0' : char}
-    </span>
-  ));
 
   return (
     <section
-      ref={containerRef}
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-zinc-950" />
+      {/* Background: deep violet-black with neon orbs + grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#1a0f33_0%,#08040f_55%,#050208_100%)]" />
+      <div className="absolute inset-0 bg-grid opacity-40" />
+      <div className="absolute top-1/4 -left-32 w-[480px] h-[480px] bg-violet-600/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 -right-32 w-[420px] h-[420px] bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.4s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] bg-fuchsia-600/10 rounded-full blur-3xl" />
 
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="flex flex-col items-center text-center">
-          {/* Profile Image */}
-          <div
-            ref={imageRef}
-            className="relative mb-8"
-          >
-            <div className="w-40 h-40 sm:w-52 sm:h-52 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl shadow-blue-500/20">
+      <div className="relative z-10 container mx-auto px-5 sm:px-8 py-28 text-center">
+        {/* Photo */}
+        <Reveal>
+          <div className="relative inline-block mb-9">
+            <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-2 border-violet-400/40 shadow-[0_0_40px_rgba(139,92,246,0.20)]">
               <img
-                src={heroConfig.profileImage}
-                alt={heroConfig.title}
-                className="w-full h-full object-cover"
+                src={heroConfig.photo}
+                alt={heroConfig.name}
+                className="w-full h-full object-cover object-top"
               />
             </div>
-            {/* Glow effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 blur-xl -z-10 scale-110" />
+            <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-violet-500/25 via-fuchsia-500/15 to-cyan-400/25 blur-xl -z-10 scale-110" />
           </div>
+        </Reveal>
 
-          {/* Title */}
-          <h1
-            ref={titleRef}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4"
-            style={{ perspective: '1000px' }}
-          >
-            {titleChars}
+        {/* Name */}
+        <Reveal delay={100}>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+            {heroConfig.name.split(' ')[0]}{' '}
+            <span className="text-gradient">{heroConfig.name.split(' ').slice(1).join(' ')}</span>
           </h1>
+        </Reveal>
 
-          {/* Subtitle */}
-          <p
-            ref={subtitleRef}
-            className="text-lg sm:text-xl md:text-2xl text-zinc-400 mb-4"
-          >
-            {heroConfig.subtitle}
-          </p>
-
-          {/* Tagline */}
-          <p
-            ref={taglineRef}
-            className="text-base sm:text-lg text-zinc-500 max-w-2xl mb-10"
-          >
+        <Reveal delay={200}>
+          <p className="mt-5 font-mono text-sm sm:text-base text-cyan-300/80 tracking-wide">
             {heroConfig.tagline}
           </p>
+        </Reveal>
 
-          {/* CTA Button */}
-          <button
-            ref={ctaRef}
-            onClick={scrollToProjects}
-            className="group relative px-8 py-4 bg-white text-black font-medium rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20"
-          >
-            <span className="relative z-10">{heroConfig.ctaText}</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
-        </div>
+        <Reveal delay={300}>
+          <p className="mt-6 text-base sm:text-lg text-violet-200/60 max-w-2xl mx-auto leading-relaxed">
+            {heroConfig.intro}
+          </p>
+        </Reveal>
+
+        <Reveal delay={400}>
+          <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => scrollTo(heroConfig.ctaHref)}
+              className="group relative px-8 py-3.5 rounded-full bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 text-white font-semibold overflow-hidden transition-transform duration-300 hover:scale-105 shadow-[0_0_24px_rgba(168,85,247,0.22)]"
+            >
+              <span className="relative z-10 inline-flex items-center gap-2">
+                {heroConfig.ctaText} <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              </span>
+            </button>
+            <button
+              onClick={() => scrollTo('#work')}
+              className="px-8 py-3.5 rounded-full border border-violet-400/25 text-violet-200/80 hover:border-cyan-400/50 hover:text-white transition-all duration-300"
+            >
+              The human side
+            </button>
+          </div>
+        </Reveal>
+
+        {/* Stats */}
+        <Reveal delay={500}>
+          <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg mx-auto">
+            {heroConfig.stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-2xl sm:text-3xl font-bold text-white">{stat.value}</div>
+                <div className="mt-1 text-xs text-violet-200/50">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
-        <span className="text-xs text-zinc-500 mb-2">Scroll to explore</span>
-        <ChevronDown className="w-5 h-5 text-zinc-500" />
-      </div>
+      {/* Scroll hint */}
+      <a
+        href="#about"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollTo('#about');
+        }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-violet-200/40 hover:text-violet-200/80 transition-colors"
+      >
+        <span className="text-[0.65rem] font-mono tracking-[0.25em] uppercase">Scroll</span>
+        <ChevronDown className="w-4 h-4 animate-bounce" />
+      </a>
     </section>
   );
 }
