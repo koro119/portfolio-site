@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { CursorAura } from './components/CursorAura';
 import { Navigation } from './components/Navigation';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
@@ -26,7 +27,8 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="relative isolate min-h-screen bg-background text-foreground overflow-x-hidden">
+      <CursorAura />
       <Navigation />
       <main>
         <Hero />
