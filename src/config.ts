@@ -297,7 +297,7 @@ export const makingConfig: MakingConfig = {
     {
       phase: "03 · Build",
       title: "AI-assisted frontend",
-      text: "The frontend was generated with AI assistance against the plan: React + Vite + Tailwind, a lavender/violet theme with neon accents, scroll-reveal animations, and a data-driven project grid that filters by tag.",
+      text: "The frontend was generated with AI assistance against the plan: React + Vite + Tailwind, a slate-and-teal theme on squared glass panels, scroll-reveal animations, and a data-driven project grid that filters by tag.",
     },
     {
       phase: "04 · Iterate",

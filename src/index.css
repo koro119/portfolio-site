@@ -6,34 +6,44 @@
 
 @layer base {
   :root {
-    /* Lavender / violet base with neon accents */
-    --background: 262 45% 4%;          /* deep violet-black */
-    --foreground: 258 60% 94%;         /* near-white with violet tint */
-    --card: 260 32% 8%;
-    --card-foreground: 258 60% 94%;
-    --popover: 260 32% 8%;
-    --popover-foreground: 258 60% 94%;
-    --primary: 262 84% 70%;            /* electric lavender */
-    --primary-foreground: 262 45% 6%;
-    --secondary: 258 40% 15%;
-    --secondary-foreground: 258 60% 94%;
-    --muted: 258 28% 14%;
-    --muted-foreground: 258 20% 62%;
-    --accent: 322 85% 62%;             /* neon pink */
-    --accent-foreground: 262 45% 6%;
-    --destructive: 0 84% 60%;
+    /* Slate ground */
+    --background: 200 12% 5%;        /* #0c0e10 page base */
+    --foreground: 205 18% 90%;       /* #e2e6ea */
+    --card: 205 13% 9%;
+    --card-foreground: 205 18% 90%;
+    --popover: 205 13% 9%;
+    --popover-foreground: 205 18% 90%;
+    --primary: 205 27% 73%;          /* #a8bccd steel */
+    --primary-foreground: 205 22% 8%;
+    --secondary: 205 12% 14%;
+    --secondary-foreground: 205 18% 90%;
+    --muted: 205 12% 14%;
+    --muted-foreground: 205 12% 62%;
+    --accent: 176 33% 37%;           /* #3f7d78 teal */
+    --accent-foreground: 205 22% 8%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 258 30% 20%;
-    --input: 258 30% 20%;
-    --ring: 262 84% 70%;
-    --radius: 0.75rem;
+    --border: 205 20% 22%;
+    --input: 205 20% 22%;
+    --ring: 205 27% 73%;
+    --radius: 0px;
 
-    /* Neon accent palette */
-    --neon-purple: #a78bfa;
-    --neon-violet: #8b5cf6;
-    --neon-lavender: #c4b5fd;
-    --neon-cyan: #67e8f9;
-    --neon-pink: #f472b6;
+    /* Slate literal tokens */
+    --text: #e2e6ea;
+    --steel: #a8bccd;
+    --steel-dim: #93a7b8;
+    --btn-fill: #b4c6d4;
+    --btn-hover: #cfdde7;
+    --btn-ink: #0f1418;
+    --teal: #3f7d78;
+    --meta: rgba(226, 230, 234, 0.72);
+    --meta-dim: rgba(226, 230, 234, 0.62);
+    --glass-border: rgba(224, 232, 240, 0.15);
+    --hairline: rgba(224, 232, 240, 0.26);
+    --chip-text: #c3d2dd;
+    --card-hover: rgba(226, 230, 234, 0.05);
+    --scroll-track: #1a1f24;
+    --scroll-thumb: #3a444c;
   }
 }
 
@@ -53,8 +63,8 @@
   }
 
   ::selection {
-    background: var(--neon-purple);
-    color: #fff;
+    background: var(--steel);
+    color: var(--btn-ink);
   }
 
   /* Scrollbar */
@@ -62,109 +72,50 @@
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0612;
+    background: var(--scroll-track);
   }
   ::-webkit-scrollbar-thumb {
-    background: #3b2a63;
-    border-radius: 5px;
+    background: var(--scroll-thumb);
+    border-radius: 0;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #6d4fc4;
+    background: #4a565e;
   }
 }
 
 @layer components {
-  /* Noise overlay for cinematic grain */
-  .noise-overlay {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Squared glass panel */
+  .glass {
+    background: rgba(214, 224, 232, 0.045);
+    backdrop-filter: blur(30px) saturate(1.15);
+    -webkit-backdrop-filter: blur(30px) saturate(1.15);
+    border: 1px solid rgba(224, 232, 240, 0.15);
+    box-shadow: inset 0 1px 0 rgba(255, 250, 255, 0.10), 0 18px 40px rgba(8, 10, 12, 0.28);
+    border-radius: 0;
   }
 
-  /* Subtle grid background */
-  .bg-grid {
-    background-image:
-      linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(139, 92, 246, 0.06) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  /* Squared outline chip */
+  .chip {
+    display: inline-block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--hairline);
+    color: var(--chip-text);
+    white-space: nowrap;
+    border-radius: 0;
   }
 
-  /* Section label — mono, uppercase, neon dot */
+  /* Section kicker — mono, uppercase, steel, numbered */
   .section-label {
     font-family: 'Geist Mono', monospace;
     font-size: 0.75rem;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
-    color: var(--neon-lavender);
+    color: var(--steel);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-  }
-  .section-label::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 9999px;
-    background: var(--neon-purple);
-    box-shadow: 0 0 8px var(--neon-purple);
-  }
-  .section-label[data-accent='cyan']::before {
-    background: var(--neon-cyan);
-    box-shadow: 0 0 8px var(--neon-cyan);
-  }
-  .section-label[data-accent='pink']::before {
-    background: var(--neon-pink);
-    box-shadow: 0 0 8px var(--neon-pink);
-  }
-
-  /* Neon text gradient */
-  .text-gradient {
-    background: linear-gradient(100deg, #c4b5fd 0%, #a78bfa 35%, #67e8f9 70%, #f472b6 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-
-  /* Card base */
-  .neo-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(196, 181, 253, 0.12);
-    border-radius: 1rem;
-    backdrop-filter: blur(8px);
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .neo-card:hover {
-    border-color: rgba(168, 85, 247, 0.4);
-    transform: translateY(-3px);
-    box-shadow: 0 0 32px rgba(139, 92, 246, 0.08);
-  }
-
-  /* Tag chip */
-  .chip {
-    font-size: 0.72rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 9999px;
-    background: rgba(139, 92, 246, 0.12);
-    border: 1px solid rgba(168, 85, 247, 0.25);
-    color: #d8ccff;
-    font-family: 'Geist Mono', monospace;
-  }
-  .chip-cyan {
-    background: rgba(34, 211, 238, 0.08);
-    border-color: rgba(34, 211, 238, 0.25);
-    color: #a5f3fc;
-  }
-  .chip-pink {
-    background: rgba(236, 72, 153, 0.08);
-    border-color: rgba(236, 72, 153, 0.3);
-    color: #fbcfe8;
   }
 }
 

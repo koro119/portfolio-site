@@ -27,7 +27,6 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
-      <div className="noise-overlay" />
       <Navigation />
       <main>
         <Hero />

@@ -14,9 +14,6 @@ export function ConceptualExperiments() {
 
   return (
     <section id="experiments" className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-950/15 to-transparent" />
-      <div className="absolute top-1/4 -right-32 w-[400px] h-[400px] bg-pink-600/10 rounded-full blur-3xl" />
-
       <div className="relative z-10 container mx-auto px-5 sm:px-8">
         <SectionHeader
           label="03 · Conceptual Experiments"
@@ -26,10 +23,10 @@ export function ConceptualExperiments() {
 
         {/* Lab-notebook framing note */}
         <Reveal className="max-w-2xl mx-auto mb-14">
-          <div className="flex items-start gap-3 rounded-xl border border-dashed border-pink-400/25 bg-pink-500/5 px-5 py-4 text-sm text-pink-100/70 leading-relaxed">
-            <FlaskConical className="w-4 h-4 shrink-0 mt-0.5 text-pink-300" />
+          <div className="flex items-start gap-3 border border-dashed border-glass-border bg-white/[0.02] px-5 py-4 text-sm text-meta leading-relaxed">
+            <FlaskConical className="w-4 h-4 shrink-0 mt-0.5 text-steel" />
             <p>
-              <span className="font-semibold text-pink-200">Lab rules: </span>
+              <span className="font-medium text-foreground">Lab rules: </span>
               entries here are sketched, prototyped and often left unfinished on purpose. The
               architecture and the core idea are mine; the build was collaborative with AI tools.
               If it reads like a journal, that's correct.
@@ -43,10 +40,8 @@ export function ConceptualExperiments() {
               <div className="md:col-span-2 lg:col-span-3">
                 <ProjectCard
                   project={featured}
-                  accent="pink"
                   index={0}
                   badge="flagship experiment"
-                  badgeClass="chip-pink"
                   lab
                 />
               </div>
@@ -55,7 +50,6 @@ export function ConceptualExperiments() {
               <ProjectCard
                 key={project.slug}
                 project={project}
-                accent="pink"
                 index={i + 1}
                 lab
               />
@@ -63,19 +57,19 @@ export function ConceptualExperiments() {
 
             {/* Open slots for future experiments */}
             <Reveal delay={150}>
-              <div className="neo-card border-dashed border-violet-400/20 h-full min-h-[240px] flex flex-col items-center justify-center text-center p-8">
-                <div className="w-11 h-11 rounded-full border border-dashed border-violet-400/40 flex items-center justify-center mb-4">
-                  <Plus className="w-5 h-5 text-violet-300/70" />
+              <div className="glass border-dashed border-glass-border h-full min-h-[240px] flex flex-col items-center justify-center text-center p-8">
+                <div className="w-11 h-11 border border-dashed border-glass-border flex items-center justify-center mb-4">
+                  <Plus className="w-5 h-5 text-steel" />
                 </div>
-                <p className="text-sm font-medium text-violet-200/70 mb-1">Next experiments brewing</p>
-                <p className="text-xs text-violet-200/40 leading-relaxed max-w-[220px]">
+                <p className="text-sm font-medium text-meta mb-1">Next experiments brewing</p>
+                <p className="text-xs text-meta-dim leading-relaxed max-w-[220px]">
                   ZEO, Athena and other agent-type projects — slots open on the bench.
                 </p>
               </div>
             </Reveal>
           </div>
         ) : (
-          <p className="text-center text-violet-200/50 font-mono text-sm">
+          <p className="text-center text-meta-dim font-mono text-sm">
             loading projects.json…
           </p>
         )}

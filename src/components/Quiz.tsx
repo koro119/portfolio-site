@@ -62,25 +62,25 @@ export function Quiz() {
   );
 
   return (
-    <div className="neo-card p-6 sm:p-8">
+    <div className="glass p-6 sm:p-8">
       <div className="flex items-center gap-2 mb-1">
-        <Sparkles className="w-4 h-4 text-violet-300" />
-        <h3 className="text-xl font-semibold text-white">{aboutConfig.quizTitle}</h3>
+        <Sparkles className="w-4 h-4 text-steel" />
+        <h3 className="text-xl font-medium text-foreground">{aboutConfig.quizTitle}</h3>
       </div>
-      <p className="text-sm text-violet-200/60 mb-6">{aboutConfig.quizIntro}</p>
+      <p className="text-sm text-meta mb-6">{aboutConfig.quizIntro}</p>
 
       {/* Progress */}
-      <div className="h-1 bg-violet-500/10 rounded-full overflow-hidden mb-6">
+      <div className="h-1 bg-muted overflow-hidden mb-6">
         <div
-          className="h-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-cyan-400 transition-all duration-500"
+          className="h-full bg-steel transition-all duration-500"
           style={{ width: `${progress}%` }}
         />
       </div>
 
       {!state.done && question && (
         <div key={question.id}>
-          <p className="text-white font-medium mb-4">
-            <span className="text-violet-300 font-mono text-sm mr-2">
+          <p className="text-foreground font-medium mb-4">
+            <span className="text-steel font-mono text-sm mr-2">
               Q{state.step + 1}/{questions.length}
             </span>
             {question.question}
@@ -90,7 +90,7 @@ export function Quiz() {
               <button
                 key={option.label}
                 onClick={() => pick(option.label)}
-                className="w-full text-left px-4 py-3 rounded-lg border border-violet-400/15 bg-violet-500/5 hover:bg-violet-500/15 hover:border-violet-400/40 text-sm text-violet-100/90 transition-all duration-200"
+                className="w-full text-left px-4 py-3 border border-glass-border bg-transparent hover:bg-card-hover hover:border-steel text-sm text-foreground/90 transition-colors duration-200"
               >
                 {option.label}
               </button>
@@ -101,31 +101,28 @@ export function Quiz() {
 
       {state.done && resultText && state.result && (
         <div>
-          <p className="font-mono text-[0.7rem] tracking-widest text-fuchsia-300/80 uppercase mb-3">
+          <p className="font-mono text-[0.7rem] tracking-widest text-steel uppercase mb-3">
             Readout generated
           </p>
-          <h4 className="text-2xl font-bold text-gradient mb-3">{resultText.title}</h4>
-          <p className="text-sm text-violet-200/70 leading-relaxed mb-5">{resultText.text}</p>
+          <h4 className="text-2xl font-medium text-foreground mb-3">{resultText.title}</h4>
+          <p className="text-sm text-meta leading-relaxed mb-5">{resultText.text}</p>
 
           <div className="flex flex-wrap items-center gap-2 mb-6">
             {archetypeDots.map((key) => (
-              <span
-                key={key}
-                className={`chip ${key === state.result ? 'chip-pink' : ''}`}
-              >
+              <span key={key} className="chip">
                 {aboutConfig.archetypes[key].title}
               </span>
             ))}
           </div>
 
-          <div className="border-t border-violet-400/10 pt-4 flex flex-col sm:flex-row sm:items-center gap-3">
+          <div className="border-t border-glass-border pt-4 flex flex-col sm:flex-row sm:items-center gap-3">
             <button
               onClick={restart}
-              className="inline-flex items-center gap-2 text-sm text-violet-200/70 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-meta hover:text-foreground transition-colors"
             >
               <RotateCcw className="w-4 h-4" /> Take it again
             </button>
-            <p className="text-xs text-violet-200/40 sm:ml-auto max-w-sm">
+            <p className="text-xs text-meta-dim sm:ml-auto max-w-sm">
               {aboutConfig.quizNote}
             </p>
           </div>

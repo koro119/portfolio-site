@@ -38,7 +38,7 @@ export function Navigation() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#0a0612]/85 backdrop-blur-md border-b border-violet-500/10 py-3'
+            ? 'bg-[#0c0e10]/85 backdrop-blur-md border-b border-glass-border py-3'
             : 'bg-transparent py-5'
         }`}
       >
@@ -46,13 +46,11 @@ export function Navigation() {
           <a
             href="#hero"
             onClick={(e) => go(e, '#hero')}
-            className="text-lg font-bold tracking-tight text-white hover:text-violet-300 transition-colors"
+            className="text-lg font-bold tracking-tight text-foreground hover:text-steel transition-colors"
           >
             {navigationConfig.logo}
-            <span className="text-violet-400">/</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
-              zylen
-            </span>
+            <span className="text-steel">/</span>
+            <span className="text-steel">zylen</span>
           </a>
 
           {/* Desktop nav */}
@@ -64,13 +62,13 @@ export function Navigation() {
                 onClick={(e) => go(e, item.href)}
                 className={`relative text-sm transition-colors duration-200 ${
                   isActive(item.href)
-                    ? 'text-violet-300'
-                    : 'text-violet-200/60 hover:text-white'
+                    ? 'text-steel'
+                    : 'text-meta hover:text-foreground'
                 }`}
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-1.5 left-0 h-px bg-gradient-to-r from-violet-400 to-cyan-400 transition-all duration-300 ${
+                  className={`absolute -bottom-1.5 left-0 h-px bg-steel transition-all duration-300 ${
                     isActive(item.href) ? 'w-full' : 'w-0'
                   }`}
                 />
@@ -81,7 +79,7 @@ export function Navigation() {
           {/* Mobile toggle */}
           <button
             aria-label="Toggle menu"
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-violet-100 hover:text-white transition-colors"
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-foreground/90 hover:text-foreground transition-colors"
             onClick={() => setIsOpen((v) => !v)}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -91,7 +89,7 @@ export function Navigation() {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden bg-[#08040f]/97 backdrop-blur-xl transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 lg:hidden bg-[#0c0e10]/97 backdrop-blur-xl transition-opacity duration-300 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -101,8 +99,8 @@ export function Navigation() {
               key={item.href}
               href={item.href}
               onClick={(e) => go(e, item.href)}
-              className={`text-3xl font-semibold transition-all duration-500 ${
-                isActive(item.href) ? 'text-violet-300' : 'text-white hover:text-violet-300'
+              className={`text-3xl font-medium transition-all duration-500 ${
+                isActive(item.href) ? 'text-steel' : 'text-foreground hover:text-steel'
               }`}
               style={{
                 transform: isOpen ? 'translateY(0)' : 'translateY(24px)',
