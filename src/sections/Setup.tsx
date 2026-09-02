@@ -16,10 +16,10 @@ export function Setup() {
           subtitle={setupConfig.subtitle}
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {setupConfig.items.map((item, i) => (
             <Reveal key={item.title} delay={i * 60}>
-              <div className="glass h-full p-6 hover:bg-card-hover">
+              <div className="glass h-full p-6 hover:bg-card-hover hover:border-steel/40 transition-colors duration-200">
                 <p className="font-mono text-[11px] tracking-widest text-steel uppercase mb-3">
                   {item.kicker}
                 </p>
@@ -28,17 +28,6 @@ export function Setup() {
               </div>
             </Reveal>
           ))}
-
-          {/* Started coding */}
-          <Reveal delay={setupConfig.items.length * 60}>
-            <div className="glass h-full p-6 flex flex-col justify-between">
-              <p className="font-mono text-[11px] tracking-widest text-steel uppercase mb-3">Since</p>
-              <p className="font-mono text-4xl text-steel leading-none tabular-nums">
-                {setupConfig.since}
-              </p>
-              <p className="mt-2 text-sm text-meta">Started coding</p>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>

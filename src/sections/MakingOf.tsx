@@ -29,7 +29,7 @@ export function MakingOf() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
           {makingConfig.steps.map((step, i) => (
             <Reveal key={step.phase} delay={i * 60}>
-              <div className="glass h-full p-6 hover:bg-card-hover">
+              <div className="glass h-full p-6 hover:bg-card-hover hover:border-steel/40 transition-colors duration-200">
                 <p className="font-mono text-[11px] tracking-widest text-steel uppercase mb-3">
                   {step.phase}
                 </p>

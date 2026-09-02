@@ -61,7 +61,7 @@ export const heroConfig: HeroConfig = {
   name: "Zylen Saldahna",
   tagline: "Final-year CS student · AI / ML focus · Building intelligent systems",
   intro:
-    "I'm a final-year Computer Science student at the University of Greenwich, specialising in AI and machine learning. I'm quick to generate ideas and prone to jumping between projects fast — impulsive in the creative sense: an idea lands and I'm building it the same week. Some become shipped apps, others become findings. I'm money-motivated in the best way: I want what I build to be useful enough that someone would pay for it.",
+    "I'm a final-year Computer Science student at the University of Greenwich, specialising in AI and machine learning. Ideas land and I start building the same week — some become shipped apps, others become findings. And I want what I build to be useful enough that someone would pay for it.",
   ctaText: "See what I've built",
   ctaHref: "#AI-assisted",
   photo: `${import.meta.env.BASE_URL}profile.jpg`,
@@ -101,7 +101,7 @@ export const aboutConfig: AboutConfig = {
   heading: "About me",
   paragraphs: [
     "I build systems that combine software, hardware and models — from a dual-engine crime forecasting pipeline (XGBoost + a local LLM reading the news) to a personal agentic OS written in Rust.",
-    "I move fast and I'm transparent about how: most of my shipping projects are AI-assisted — built with heavy AI assistance, with the architecture, direction and review done by me. The ones that prove fundamentals are written by hand, line by line. Both matter, and this site shows the difference.",
+    "I move fast. The projects I ship, I design and direct end to end — the architecture, the direction and the review are mine — and I use every tool that gets me there faster. The fundamentals I write by hand, line by line. Both matter, and this site shows the difference.",
     "Useful is the bar I aim for — I'm money-motivated, but as a driver rather than a dirty word: I want the things I build to be useful enough that someone would pay for them. It's why my work mixes ambition (an agent that grows its own language) with pragmatism (a job-application tracker that reads live job APIs).",
   ],
   quizTitle: "A small project that analyses you",
@@ -183,7 +183,6 @@ export interface SetupItem {
 export interface SetupConfig {
   heading: string;
   subtitle: string;
-  since: string;
   items: SetupItem[];
 }
 
@@ -191,7 +190,6 @@ export const setupConfig: SetupConfig = {
   heading: "My setup",
   subtitle:
     "The tools behind everything on this page — a mix of cloud and fully-local AI.",
-  since: "2019",
   items: [
     {
       kicker: "Cloud",
@@ -320,7 +318,7 @@ export const makingConfig: MakingConfig = {
   intro:
     "A behind-the-scenes look at how this site was planned and built — including the parts most portfolios leave out.",
   honest:
-    "Yes — this frontend was AI-assisted. That's a deliberate, transparent choice, not a secret: I directed the plan, the structure and every design decision; AI tools turned the direction into code at speed. The result is a working site in a fraction of the time, and the process itself is the case study below.",
+    "I planned this site myself — the structure, the content, every design decision — then built it fast with the tools I use every day. The result is a working site in a fraction of the time, and the process itself is the case study below.",
   steps: [
     {
       phase: "01 · Concept",
@@ -334,8 +332,8 @@ export const makingConfig: MakingConfig = {
     },
     {
       phase: "03 · Build",
-      title: "AI-assisted frontend",
-      text: "The frontend was generated with AI assistance against the plan: React + Vite + Tailwind, a slate-and-teal theme on squared glass panels, scroll-reveal animations, and a data-driven project grid that filters by tag.",
+      title: "Building the frontend",
+      text: "I built the frontend against the plan: React + Vite + Tailwind, a slate-and-teal theme on squared glass panels, scroll-reveal animations, and a data-driven project grid.",
     },
     {
       phase: "04 · Iterate",
@@ -345,11 +343,11 @@ export const makingConfig: MakingConfig = {
     {
       phase: "05 · Ship",
       title: "Deploy and maintain",
-      text: "This site is itself an AI-assisted project in the archive — proof that the method ships. It'll live on GitHub Pages or Netlify, and the projects feed means updating it is editing one JSON file.",
+      text: "This site is itself a project in the archive — proof that the process ships. It's live on GitHub Pages, and the projects feed means updating it is editing one JSON file.",
     },
   ],
   closing:
-    "The takeaway: AI-assisted development is a strength when it's combined with real direction. The tool does the typing; the thinking is the product.",
+    "The takeaway: the thinking is the product. Good tools make you faster, but the direction and the decisions are what actually ship.",
 };
 
 // ============================================================================
@@ -363,5 +361,5 @@ export interface FooterConfig {
 
 export const footerConfig: FooterConfig = {
   tagline: "Final-year Computer Science student — building intelligent systems that ship.",
-  copyright: `© ${new Date().getFullYear()} Zylen Saldahna. Built with direction + AI assistance.`,
+  copyright: `© ${new Date().getFullYear()} Zylen Saldahna.`,
 };

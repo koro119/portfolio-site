@@ -8,11 +8,13 @@ interface ProjectRowProps {
   badge?: string;
 }
 
-/** Full-width row layout for the From Scratch section (90px / 1.1fr / 1.4fr / 200px). */
+const isCoursework = (p: ArchiveProject) => p.category === 'University coursework';
+
+/** Full-width row layout for the From Scratch section (90px / 1.1fr / 200px). */
 export function ProjectRow({ project, index = 0, badge }: ProjectRowProps) {
   return (
     <Reveal>
-      <article className="glass grid grid-cols-1 md:grid-cols-[90px_1.1fr_1.4fr_200px] gap-5 p-6 sm:p-7 hover:bg-card-hover">
+      <article className="glass grid grid-cols-1 md:grid-cols-[90px_1.1fr_200px] gap-5 p-6 sm:p-7 hover:bg-card-hover hover:border-steel/40 transition-colors duration-200">
         {/* Index */}
         <div className="font-mono text-steel">
           {String(index + 1).padStart(2, '0')}
@@ -23,12 +25,12 @@ export function ProjectRow({ project, index = 0, badge }: ProjectRowProps) {
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-lg font-medium text-foreground leading-snug">{project.title}</h3>
             {badge && <span className="chip shrink-0">{badge}</span>}
+            {isCoursework(project) && (
+              <span className="chip chip-coursework shrink-0">coursework</span>
+            )}
           </div>
           <p className="mt-2 text-sm text-meta">{project.tagline}</p>
         </div>
-
-        {/* Summary */}
-        <p className="text-sm text-meta leading-relaxed line-clamp-3">{project.summary}</p>
 
         {/* Stack + meta */}
         <div className="flex flex-col gap-3">
@@ -42,7 +44,7 @@ export function ProjectRow({ project, index = 0, badge }: ProjectRowProps) {
           </div>
           <div className="mt-auto flex items-center justify-between text-xs">
             <span className="font-mono text-meta-dim">{project.dates}</span>
-            <span className="font-mono text-steel">{project.status}</span>
+            {project.status && <span className="font-mono text-steel">{project.status}</span>}
           </div>
           {project.repo && (
             <a

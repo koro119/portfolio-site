@@ -27,3 +27,4 @@ auth.json
 
 # os
 .DS_Store
+.gstack/

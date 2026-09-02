@@ -118,7 +118,7 @@ export function Quiz() {
           <div className="border-t border-glass-border pt-4 flex flex-col sm:flex-row sm:items-center gap-3">
             <button
               onClick={restart}
-              className="inline-flex items-center gap-2 px-4 min-h-[44px] bg-teal text-white text-sm font-medium hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 px-4 min-h-[44px] bg-teal text-white text-sm font-medium hover:brightness-110 active:scale-[0.98] transition-all"
             >
               <RotateCcw className="w-4 h-4" /> Take it again
             </button>

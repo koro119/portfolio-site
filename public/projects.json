@@ -307,7 +307,7 @@
         "Folium",
         "UK Police API"
       ],
-      "status": "Final year project — active",
+      "status": "Potential final year project",
       "dates": "Jul-Aug 2026",
       "files": 14,
       "repo": "https://github.com/koro119/crime-forecasting",
@@ -352,7 +352,7 @@
         "MLX",
         "Open WebUI"
       ],
-      "status": "In daily use",
+      "status": "",
       "dates": "Jul 2026",
       "files": 5,
       "repo": "https://github.com/koro119/qwen-launchers",

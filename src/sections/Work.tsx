@@ -21,7 +21,7 @@ export function Work() {
         <div className="mt-12 grid gap-5">
           {workConfig.roles.map((role, i) => (
             <Reveal key={role.role} delay={i * 60}>
-              <article className="glass grid grid-cols-1 md:grid-cols-[260px_1fr_200px] gap-5 p-6 sm:p-7 hover:bg-card-hover">
+              <article className="glass grid grid-cols-1 md:grid-cols-[260px_1fr_200px] gap-5 p-6 sm:p-7 hover:bg-card-hover hover:border-steel/40 transition-colors duration-200">
                 <div>
                   <h3 className="text-lg font-medium text-foreground">{role.role}</h3>
                   <p className="mt-1 text-sm text-steel-dim">{role.place}</p>

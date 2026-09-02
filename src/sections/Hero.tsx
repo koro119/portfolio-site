@@ -32,7 +32,7 @@ export function Hero() {
             <div className="mt-9">
               <button
                 onClick={() => scrollTo(heroConfig.ctaHref)}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-btn-fill text-ink font-medium hover:bg-btn-hover transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-btn-fill text-ink font-medium hover:bg-btn-hover active:scale-[0.98] transition-all duration-200"
               >
                 {heroConfig.ctaText} <ArrowDown className="w-4 h-4" />
               </button>

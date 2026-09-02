@@ -18,7 +18,7 @@ export function ProjectCard({ project, index = 0, badge, lab }: ProjectCardProps
   return (
     <Reveal delay={(index % 3) * 90}>
       <article
-        className={`glass group h-full flex flex-col overflow-hidden ${
+        className={`glass group h-full flex flex-col overflow-hidden hover:bg-card-hover hover:border-steel/40 transition-colors duration-200 ${
           lab ? 'border-dashed border-glass-border' : ''
         }`}
       >
@@ -31,20 +31,19 @@ export function ProjectCard({ project, index = 0, badge, lab }: ProjectCardProps
             </div>
             {badge ? (
               <span className="chip shrink-0">{badge}</span>
-            ) : (
+            ) : project.status ? (
               <span className="chip shrink-0">{project.status}</span>
-            )}
+            ) : null}
           </div>
 
           {lab && (
-            <div className="font-mono text-[0.65rem] tracking-widest text-steel mb-3">
+            <div className="font-mono text-[11px] tracking-widest text-steel mb-3">
               EXPERIMENT {String(index + 1).padStart(2, '0')} · {project.category.toUpperCase()}
             </div>
           )}
 
-          <p className="text-sm text-meta mb-3">{project.tagline}</p>
-
-          <p className="text-sm text-meta leading-relaxed mb-5 line-clamp-3">{project.summary}</p>
+          {/* Quick description */}
+          <p className="text-sm text-meta mb-4">{project.tagline}</p>
 
           {/* Stack */}
           <div className="flex flex-wrap gap-1.5 mb-5">
@@ -58,14 +57,7 @@ export function ProjectCard({ project, index = 0, badge, lab }: ProjectCardProps
 
           {/* Footer */}
           <div className="mt-auto space-y-3">
-            <div className="flex items-center justify-between text-xs">
-              <span className="font-mono text-meta-dim">{project.dates}</span>
-              {!badge && (
-                <span className="font-mono text-steel">
-                  {project.status}
-                </span>
-              )}
-            </div>
+            <div className="text-xs font-mono text-meta-dim">{project.dates}</div>
 
             {/* How I Did It — expandable */}
             <div className="border-t border-glass-border pt-3">

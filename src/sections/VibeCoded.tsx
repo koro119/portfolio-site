@@ -15,16 +15,16 @@ export function VibeCoded() {
       <div className="container mx-auto px-5 sm:px-8">
         <SectionHeader
           label="02 — AI-Assisted"
-          title="Built with AI — and proud of it"
-          subtitle="These were built fast, with heavy AI assistance and my direction. I'm transparent about it on purpose: fast execution that ships a working product is a strength, not a secret."
+          title="Built fast — and proud of it"
+          subtitle="These shipped fast because I moved fast — the architecture, direction and review are mine, and I use every tool that gets me there. Speed that ships is a strength."
         />
 
         {/* Honesty note */}
         <Reveal className="max-w-2xl mb-12">
           <div className="glass px-5 py-4 text-sm text-meta leading-relaxed">
             <span className="font-medium text-foreground">How to read this section: </span>
-            AI tools do the typing; I do the architecture, the direction and the review. Every repo below
-            is mine — the tool is the co-pilot, the decisions are mine.
+            Every repo below is mine — I designed it, directed it and reviewed it. I use the best tools
+            available, but the ownership is mine.
           </div>
         </Reveal>
 
