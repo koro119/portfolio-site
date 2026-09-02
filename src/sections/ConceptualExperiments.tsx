@@ -1,16 +1,15 @@
-import { useProjects } from '../hooks/useProjects';
+import { useProjects, partitionFeatured } from '../hooks/useProjects';
 import { SectionHeader } from '../components/SectionHeader';
 import { ProjectCard } from '../components/ProjectCard';
+import { AlsoExplored } from '../components/AlsoExplored';
 import { Reveal } from '../components/Reveal';
 import { FlaskConical, Plus } from 'lucide-react';
 
 export function ConceptualExperiments() {
   const projects = useProjects();
-
-  // Neonate (the learning agent) is the flagship experiment: feature it first.
-  const conceptual = projects?.conceptual ?? [];
-  const featured = conceptual.find((p) => p.slug === 'idea-50-sim');
-  const rest = conceptual.filter((p) => p.slug !== 'idea-50-sim');
+  const { featured, rest } = projects
+    ? partitionFeatured(projects.conceptual)
+    : { featured: [], rest: [] };
 
   return (
     <section
@@ -39,39 +38,34 @@ export function ConceptualExperiments() {
         </Reveal>
 
         {projects ? (
-          <div className="grid md:grid-cols-2 gap-5">
-            {featured && (
-              <div className="md:col-span-2">
-                <ProjectCard
-                  project={featured}
-                  index={0}
-                  badge="flagship experiment"
-                  lab
-                />
-              </div>
-            )}
-            {rest.map((project, i) => (
-              <ProjectCard
-                key={project.slug}
-                project={project}
-                index={i + 1}
-                lab
-              />
-            ))}
-
-            {/* Open slots for future experiments */}
-            <Reveal delay={150}>
-              <div className="glass border-dashed h-full min-h-[240px] flex flex-col items-center justify-center text-center p-8">
-                <div className="w-11 h-11 border border-dashed border-glass-border flex items-center justify-center mb-4">
-                  <Plus className="w-5 h-5 text-steel" />
+          <>
+            <div className="grid md:grid-cols-2 gap-5">
+              {featured.map((project, i) => (
+                <div key={project.slug} className="md:col-span-2">
+                  <ProjectCard
+                    project={project}
+                    index={i}
+                    badge={project.slug === 'idea-50-sim' ? 'flagship experiment' : undefined}
+                    lab
+                  />
                 </div>
-                <p className="text-sm font-medium text-meta mb-1">Next experiments brewing</p>
-                <p className="text-xs text-meta-dim leading-relaxed max-w-[220px]">
-                  ZEO, Athena and other agent-type projects — slots open on the bench.
-                </p>
-              </div>
-            </Reveal>
-          </div>
+              ))}
+
+              {/* Open slots for future experiments */}
+              <Reveal delay={150}>
+                <div className="glass border-dashed h-full min-h-[240px] flex flex-col items-center justify-center text-center p-8">
+                  <div className="w-11 h-11 border border-dashed border-glass-border flex items-center justify-center mb-4">
+                    <Plus className="w-5 h-5 text-steel" />
+                  </div>
+                  <p className="text-sm font-medium text-meta mb-1">Next experiments brewing</p>
+                  <p className="text-xs text-meta-dim leading-relaxed max-w-[220px]">
+                    ZEO, Athena and other agent-type projects — slots open on the bench.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+            <AlsoExplored projects={rest} />
+          </>
         ) : (
           <p className="text-meta-dim font-mono text-sm">
             loading projects.json…

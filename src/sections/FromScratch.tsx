@@ -1,10 +1,14 @@
-import { useProjects } from '../hooks/useProjects';
+import { useProjects, partitionFeatured } from '../hooks/useProjects';
 import { SectionHeader } from '../components/SectionHeader';
 import { ProjectRow } from '../components/ProjectRow';
+import { AlsoExplored } from '../components/AlsoExplored';
 import { Reveal } from '../components/Reveal';
 
 export function FromScratch() {
   const projects = useProjects();
+  const { featured, rest } = projects
+    ? partitionFeatured(projects.fromScratch)
+    : { featured: [], rest: [] };
 
   return (
     <section
@@ -20,16 +24,19 @@ export function FromScratch() {
         />
 
         {projects ? (
-          <div className="grid gap-5">
-            {projects.fromScratch.map((project, i) => (
-              <ProjectRow
-                key={project.slug}
-                project={project}
-                index={i}
-                badge="no AI scaffolding"
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid gap-5">
+              {featured.map((project, i) => (
+                <ProjectRow
+                  key={project.slug}
+                  project={project}
+                  index={i}
+                  badge="no AI scaffolding"
+                />
+              ))}
+            </div>
+            <AlsoExplored projects={rest} />
+          </>
         ) : (
           <p className="text-meta-dim font-mono text-sm">
             loading projects.json…

@@ -1,10 +1,14 @@
-import { useProjects } from '../hooks/useProjects';
+import { useProjects, partitionFeatured } from '../hooks/useProjects';
 import { SectionHeader } from '../components/SectionHeader';
 import { ProjectCard } from '../components/ProjectCard';
+import { AlsoExplored } from '../components/AlsoExplored';
 import { Reveal } from '../components/Reveal';
 
 export function VibeCoded() {
   const projects = useProjects();
+  const { featured, rest } = projects
+    ? partitionFeatured(projects.vibeCoded)
+    : { featured: [], rest: [] };
 
   return (
     <section
@@ -29,11 +33,14 @@ export function VibeCoded() {
         </Reveal>
 
         {projects ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {projects.vibeCoded.map((project, i) => (
-              <ProjectCard key={project.slug} project={project} index={i} />
-            ))}
-          </div>
+          <>
+            <div className="grid md:grid-cols-2 gap-5">
+              {featured.map((project, i) => (
+                <ProjectCard key={project.slug} project={project} index={i} />
+              ))}
+            </div>
+            <AlsoExplored projects={rest} />
+          </>
         ) : (
           <p className="text-meta-dim font-mono text-sm">
             loading projects.json…
