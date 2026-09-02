@@ -30,6 +30,31 @@ export function ProjectRow({ project, index = 0, badge }: ProjectRowProps) {
             )}
           </div>
           <p className="mt-2 text-sm text-meta">{project.tagline}</p>
+
+          {/* Metrics / proof */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {project.metrics.map((m) => (
+                <div key={m.label} className="border border-glass-border px-2.5 py-1.5">
+                  <span className="font-mono text-steel tabular-nums">{m.value}</span>
+                  <span className="text-[11px] text-meta-dim ml-1.5 uppercase tracking-wider">
+                    {m.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-teal hover:brightness-125 transition-all"
+            >
+              Live demo <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
 
         {/* Stack + meta */}
@@ -42,9 +67,14 @@ export function ProjectRow({ project, index = 0, badge }: ProjectRowProps) {
             ))}
             {project.stack.length > 4 && <span className="chip">+{project.stack.length - 4}</span>}
           </div>
-          <div className="mt-auto flex items-center justify-between text-xs">
-            <span className="font-mono text-meta-dim">{project.dates}</span>
-            {project.status && <span className="font-mono text-steel">{project.status}</span>}
+          <div className="mt-auto space-y-1">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-mono text-meta-dim">{project.dates}</span>
+              {project.status && <span className="font-mono text-steel">{project.status}</span>}
+            </div>
+            {project.timeline && (
+              <div className="text-xs font-mono text-meta-dim">{project.timeline}</div>
+            )}
           </div>
           {project.repo && (
             <a

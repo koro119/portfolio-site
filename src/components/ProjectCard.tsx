@@ -45,6 +45,41 @@ export function ProjectCard({ project, index = 0, badge, lab }: ProjectCardProps
           {/* Quick description */}
           <p className="text-sm text-meta mb-4">{project.tagline}</p>
 
+          {/* Metrics / proof */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="flex flex-wrap gap-3 mb-4">
+              {project.metrics.map((m) => (
+                <div key={m.label} className="border border-glass-border px-3 py-2">
+                  <div className="font-mono text-lg text-steel leading-none tabular-nums">
+                    {m.value}
+                  </div>
+                  <div className="text-[11px] text-meta-dim mt-1 uppercase tracking-wider">
+                    {m.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {project.demoGif && project.demoGif !== 'TODO' && (
+            <img
+              src={project.demoGif}
+              alt={`${project.title} demo`}
+              className="w-full mb-4 border border-glass-border"
+            />
+          )}
+
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mb-4 text-sm font-medium text-teal hover:brightness-125 transition-all"
+            >
+              Live demo <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
+
           {/* Stack */}
           <div className="flex flex-wrap gap-1.5 mb-5">
             {project.stack.slice(0, 5).map((tech) => (
@@ -57,7 +92,12 @@ export function ProjectCard({ project, index = 0, badge, lab }: ProjectCardProps
 
           {/* Footer */}
           <div className="mt-auto space-y-3">
-            <div className="text-xs font-mono text-meta-dim">{project.dates}</div>
+            <div className="space-y-1">
+              <div className="text-xs font-mono text-meta-dim">{project.dates}</div>
+              {project.timeline && (
+                <div className="text-xs font-mono text-meta-dim">{project.timeline}</div>
+              )}
+            </div>
 
             {/* How I Did It — expandable */}
             <div className="border-t border-glass-border pt-3">
