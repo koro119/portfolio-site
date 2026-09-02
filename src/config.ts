@@ -53,6 +53,8 @@ export interface HeroConfig {
   intro: string;
   ctaText: string;
   ctaHref: string;
+  cvLabel: string;
+  cvUrl: string;
   photo: string;
   stats: { value: string; label: string }[];
 }
@@ -64,6 +66,9 @@ export const heroConfig: HeroConfig = {
     "I'm a final-year Computer Science student at the University of Greenwich, specialising in AI and machine learning. Ideas land and I start building the same week — some become shipped apps, others become findings. And I want what I build to be useful enough that someone would pay for it.",
   ctaText: "See what I've built",
   ctaHref: "#AI-assisted",
+  cvLabel: "Download CV",
+  // TODO: drop the real one-page PDF at public/cv.pdf (this 404s until then).
+  cvUrl: `${import.meta.env.BASE_URL}cv.pdf`,
   photo: `${import.meta.env.BASE_URL}profile.jpg`,
   stats: [
     { value: "27", label: "Projects" },
@@ -102,7 +107,7 @@ export const aboutConfig: AboutConfig = {
   paragraphs: [
     "I build systems that combine software, hardware and models — from a dual-engine crime forecasting pipeline (XGBoost + a local LLM reading the news) to a personal agentic OS written in Rust.",
     "I move fast. The projects I ship, I design and direct end to end — the architecture, the direction and the review are mine — and I use every tool that gets me there faster. The fundamentals I write by hand, line by line. Both matter, and this site shows the difference.",
-    "Useful is the bar I aim for — I'm money-motivated, but as a driver rather than a dirty word: I want the things I build to be useful enough that someone would pay for them. It's why my work mixes ambition (an agent that grows its own language) with pragmatism (a job-application tracker that reads live job APIs).",
+    "Useful is the bar I aim for — I'm outcome-driven: I want the things I build to be useful enough that someone would pay for them. It's why my work mixes ambition (an agent that grows its own language) with pragmatism (a job-application tracker that reads live job APIs).",
   ],
   quizTitle: "A small project that analyses you",
   quizIntro:

@@ -1,4 +1,4 @@
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Download } from 'lucide-react';
 import { heroConfig } from '../config';
 import { Reveal } from '../components/Reveal';
 import { Countdown } from '../components/Countdown';
@@ -29,13 +29,20 @@ export function Hero() {
             <p className="mt-7 text-base sm:text-lg text-meta leading-relaxed">
               {heroConfig.intro}
             </p>
-            <div className="mt-9">
+            <div className="mt-9 flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => scrollTo(heroConfig.ctaHref)}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-btn-fill text-ink font-medium hover:bg-btn-hover active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-btn-fill text-ink font-medium hover:bg-btn-hover active:scale-[0.98] transition-all duration-200"
               >
                 {heroConfig.ctaText} <ArrowDown className="w-4 h-4" />
               </button>
+              <a
+                href={heroConfig.cvUrl}
+                download
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-glass-border text-meta hover:border-steel hover:text-foreground active:scale-[0.98] transition-all duration-200"
+              >
+                {heroConfig.cvLabel} <Download className="w-4 h-4" />
+              </a>
             </div>
           </Reveal>
 
