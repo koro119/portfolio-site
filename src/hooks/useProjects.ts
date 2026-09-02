@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 
+export interface Metric {
+  label: string;
+  value: string;
+}
+
 export interface ArchiveProject {
   slug: string;
   title: string;
@@ -15,6 +20,16 @@ export interface ArchiveProject {
   files: number;
   repo: string;
   localPath: string;
+  /** Foreground this project in its section. */
+  featured?: boolean;
+  /** Ordering for featured projects (higher first). */
+  sortWeight?: number;
+  /** Hard numbers / proof points shown on the card. */
+  metrics?: Metric[];
+  demoUrl?: string;
+  demoGif?: string;
+  /** Honest context for the repo's git history. */
+  timeline?: string;
 }
 
 export interface ProjectsFeed {
@@ -28,6 +43,20 @@ export interface GroupedProjects {
   fromScratch: ArchiveProject[];
   conceptual: ArchiveProject[];
   all: ArchiveProject[];
+}
+
+export interface FeaturedSplit {
+  featured: ArchiveProject[];
+  rest: ArchiveProject[];
+}
+
+/** Splits a group into featured (sorted by sortWeight desc) and the rest. */
+export function partitionFeatured(projects: ArchiveProject[]): FeaturedSplit {
+  const featured = projects
+    .filter((p) => p.featured)
+    .sort((a, b) => (b.sortWeight ?? 0) - (a.sortWeight ?? 0));
+  const rest = projects.filter((p) => !p.featured);
+  return { featured, rest };
 }
 
 /**

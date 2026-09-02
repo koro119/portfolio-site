@@ -29,6 +29,9 @@
       "files": 78,
       "repo": "https://github.com/koro119/zeo-2",
       "localPath": "/Users/zylen/repos/zeo-2",
+      "featured": true,
+      "sortWeight": 7,
+      "timeline": "Built Jul 2026 · archived to GitHub Aug 2026",
       "how": "I structured it as a Cargo workspace with clear module boundaries (zeo-model for SSE streaming, zeo-vault for safe file ops) so the model backend stays swappable without touching the UI. I built it phase by phase, testing each layer before the next, then shipped blue-green dual-instance deploys with automatic rollback so a bad build can never take the whole thing down. The hard-won lesson was keeping the streaming, the shell and the graph in sync — that forced me to actually understand the event flow rather than just wiring calls together."
     },
     {
@@ -123,6 +126,9 @@
       "files": 14,
       "repo": "https://github.com/koro119/clara",
       "localPath": "/Users/zylen/repos/clara",
+      "featured": true,
+      "sortWeight": 5,
+      "timeline": "Built May 2026 · archived to GitHub Aug 2026",
       "how": "I built the retrieval loop first: solved problems get embedded with nomic-embed-text and stored in a local Qdrant collection, so a similar question retrieves and adapts a past solution instead of regenerating from scratch. Then I layered the analyzer (domain classification), the extension builder (writes and runs Python) and an Obsidian connector. It's the only prototype here with a real pytest suite — I wanted tests because retrieval behaviour is exactly the kind of thing that breaks silently."
     },
     {
@@ -146,6 +152,9 @@
       "files": 24,
       "repo": "https://github.com/koro119/idea-50-sim",
       "localPath": "/Users/zylen/repos/idea-50-sim",
+      "featured": true,
+      "sortWeight": 2,
+      "timeline": "Built May 2026 · archived to GitHub Aug 2026",
       "how": "The concept: an LLM reads world state and generates the next event; a tiny neural-net agent receives that as sensory input, acts, and updates its weights from prediction error. I wrote the agent's forward and backward pass by hand rather than leaning on a framework, because the whole point was to watch it learn. Everything is logged step-by-step and viewed through a live monitor page, so I could see exactly where the learning curve happened — and where it stalled."
     },
     {
@@ -192,6 +201,13 @@
       "files": 97,
       "repo": "https://github.com/koro119/pokerapp",
       "localPath": "/Users/zylen/repos/pokerapp",
+      "featured": true,
+      "sortWeight": 8,
+      "timeline": "Built Jul-Aug 2026 · archived to GitHub Aug 2026",
+      "metrics": [
+        { "label": "Test suites", "value": "7 passing" }
+      ],
+      "demoGif": "TODO",
       "how": "I built it in five deliberate phases so each layer was testable before the next: data model, auth and a chip economy on Prisma/Postgres; the poker engine wrapping poker-ts with seven test suites; the real-time layer (WebSocket + Redis pub/sub for table state, turn timers and disconnect handling); then the SwiftUI client. The high point was a removePlayer() deadlock found in live play — I fixed it, then disabled the guard to reproduce the bug and re-enabled it to prove the fix was necessary, and had an independent agent re-verify all seven checkpoints."
     },
     {
@@ -215,6 +231,9 @@
       "files": 27,
       "repo": "https://github.com/koro119/tally",
       "localPath": "/Users/zylen/repos/tally",
+      "featured": true,
+      "sortWeight": 4,
+      "timeline": "Built Aug 2026 · archived to GitHub Aug 2026",
       "how": "The constraint was explicit: no AI anywhere, every rule inspectable. I pulled real roles from live job APIs and ATS endpoints (Pinpoint, The Muse, Workday tenant probing), parsed an uploaded CV to auto-fill the profile, scored each role against it and tracked status. The front end is vanilla JS with no build step. Writing the scoring rules by hand forced me to make them precise — a fuzzy 'good fit' doesn't compile."
     },
     {
@@ -312,6 +331,14 @@
       "files": 14,
       "repo": "https://github.com/koro119/crime-forecasting",
       "localPath": "/Users/zylen/repos/crime-forecasting",
+      "featured": true,
+      "sortWeight": 6,
+      "timeline": "Built Jul-Aug 2026 · archived to GitHub Aug 2026",
+      "metrics": [
+        { "label": "RMSE", "value": "TODO" },
+        { "label": "MAE", "value": "TODO" },
+        { "label": "PAI@10%", "value": "TODO" }
+      ],
       "how": "Two engines in parallel. Quantitative: XGBoost on UK Police data aggregated to H3 resolution-8 hexagons, with lag features and a time-held-out split, reported on MAE, RMSE and PAI@10%. Contextual: a local Ollama model reads BBC London and Guardian coverage, extracts macro events and turns them into per-area risk modifiers. I fused them multiplicatively and gave each hexagon a confidence rating based on whether the engines agree. Holding out time — not random rows — was the lesson that mattered most for a forecast that's supposed to predict the future."
     },
     {
@@ -419,6 +446,12 @@
       "files": 67,
       "repo": "https://github.com/koro119/asl-recognition",
       "localPath": "/Users/zylen/repos/asl-recognition",
+      "featured": true,
+      "sortWeight": 3,
+      "timeline": "Built 2026 · archived to GitHub Aug 2026",
+      "metrics": [
+        { "label": "Accuracy", "value": "TODO" }
+      ],
       "how": "I trained a CNN for ASL recognition: collected a labelled hand-sign dataset, trained the model and kept the weights and labels together so it can be retrained from the included script. Working with a real image dataset meant learning the data pipeline — cleaning, splitting, and why a model behaves differently on live video than on test frames."
     },
     {
@@ -461,6 +494,9 @@
       "files": 77,
       "repo": "https://github.com/koro119/campus-booking-system",
       "localPath": "/Users/zylen/repos/campus-booking-system",
+      "featured": true,
+      "sortWeight": 1,
+      "timeline": "Year 2 (COMP1549) · archived to GitHub Aug 2026",
       "how": "A full object-oriented domain model in Java — users, staff and student directories, study rooms, services, bookings, booking status and a booking manager — paired with a Maven-built Secure Access-Control System covered by JUnit tests. Modelling the domain before writing code was the lesson: get the object graph right and the rest follows."
     },
     {
